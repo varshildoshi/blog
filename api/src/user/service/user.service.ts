@@ -1,35 +1,96 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { UserEntity } from '../models/user.entity';
+import { User } from '../models/user.entity';
 import { Repository } from 'typeorm';
-import { User } from '../models/user.interface';
-import { Observable, from } from 'rxjs';
+import { UserInterface } from '../models/user.interface';
+import { Observable, from, throwError } from 'rxjs';
+import { switchMap, map, catchError } from 'rxjs/operators';
+import { AuthService } from 'src/auth/services/auth.service';
 
 @Injectable()
 export class UserService {
 
     constructor(
-        @InjectRepository(UserEntity) private readonly userRepository: Repository<UserEntity>
+        @InjectRepository(User) private readonly userRepository: Repository<UserInterface>,
+        private authService: AuthService
     ) { }
 
-    create(user: User): Observable<User> {
-        return from(this.userRepository.save(user));
+    create(user: UserInterface): Observable<UserInterface> {
+        return this.authService.hashPassword(user.password).pipe(
+            switchMap((passwordHash: string) => {
+                const newUser = new User();
+                newUser.name = user.name;
+                newUser.username = user.username;
+                newUser.email = user.email;
+                newUser.password = passwordHash;
+
+                return from(this.userRepository.save(newUser)).pipe(
+                    map((user: User) => {
+                        const { password, ...result } = user;
+                        return result;
+                    }),
+                    catchError(err => throwError(err))
+                )
+            })
+        )
     }
 
-    findAll(): Observable<User[]> {
-        return from(this.userRepository.find());
+    findAll(): Observable<UserInterface[]> {
+        return from(this.userRepository.find()).pipe(
+            map((users) => {
+                users.forEach(function (v) { delete v.password });
+                return users
+            })
+        );
     }
 
-    findOne(id: number): Observable<User> {
-        return from(this.userRepository.findOneBy({ id }));
+    findOne(id: number): Observable<UserInterface> {
+        return from(this.userRepository.findOneBy({ id })).pipe(
+            map((user: UserInterface) => {
+                const { password, ...result } = user;
+                return result;
+            })
+        )
     }
 
     delete(id: number): Observable<any> {
-        console.log(id);
         return from(this.userRepository.delete(id));
     }
 
-    update(id: number, user: User): Observable<any> {
+    update(id: number, user: UserInterface): Observable<any> {
+        delete user.email;
+        delete user.password;
         return from(this.userRepository.update(id, user));
+    }
+
+    login(user: UserInterface): Observable<string> {
+        return this.validateUser(user.email, user.password).pipe(
+            switchMap((user: UserInterface) => {
+                if (user) {
+                    return this.authService.generateJWT(user).pipe(map((jwt: string) => jwt));
+                } else {
+                    return 'Wrong Credentials';
+                }
+            })
+        );
+    }
+
+    validateUser(email: string, password: string): Observable<UserInterface> {
+        return this.findByMail(email).pipe(
+            switchMap((user: UserInterface) => this.authService.comparePassword(password, user.password).pipe(
+                map((match: boolean) => {
+                    if (match) {
+                        const { password, ...result } = user;
+                        return result;
+                    } else {
+                        throw Error;
+                    }
+                })
+            ))
+        );
+    }
+
+    findByMail(email: string): Observable<UserInterface> {
+        return from(this.userRepository.findOneBy({ email }));
     }
 }
