@@ -38,10 +38,20 @@
 		{
 			"name": "Get all users",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjo1LCJuYW1lIjoiVmFyc2hpbCBEb3NoaSIsInVzZXJuYW1lIjoiVmFyc2hpbCB0ZXN0MSIsImVtYWlsIjoidmFyc2hpbEBnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4ifSwiaWF0IjoxNzIwNjM4ODk5LCJleHAiOjE3MjA2NDg4OTl9.NjGOI-mIjSTDoy73IQGUUDcdjc3QeC1Q9_wFoqGisyc",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/users",
+					"raw": "http://localhost:3000/users?limit=2",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -49,6 +59,12 @@
 					"port": "3000",
 					"path": [
 						"users"
+					],
+					"query": [
+						{
+							"key": "limit",
+							"value": "2"
+						}
 					]
 				}
 			},
