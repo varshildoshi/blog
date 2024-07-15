@@ -10,6 +10,7 @@ import { CommonFunction } from 'src/app/modules/shared/common-function/common-fu
 import { assign } from 'lodash';
 import { emailPattern } from 'src/app/modules/shared/helpers/validation.helper';
 import { AuthenticationService } from 'src/app/modules/services/authentication.service';
+import { CustomValidators } from 'src/app/modules/shared/helpers/MatchValidator';
 
 @Component({
   selector: 'app-login',
@@ -52,7 +53,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.pattern(emailPattern())]],
-      password: ['', [Validators.required, Validators.minLength(6),]],
+      password: ['', [Validators.required, CustomValidators.passwordContainsNumber]],
     });
   }
 

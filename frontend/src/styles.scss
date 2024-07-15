@@ -3,6 +3,13 @@
 html,
 body {
     height: 100%;
+    background-image: url('./assets/images/bg/white-wall.jpg');
+    height: 100vh;
+    width: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
 }
 
 body {

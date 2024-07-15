@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { catchError, finalize, of, Subject, Subscription, takeUntil, tap } from 'rxjs';
 import { AuthenticationService } from 'src/app/modules/services/authentication.service';
 import { CommonFunction } from 'src/app/modules/shared/common-function/common-function';
-import { MustMatchValidators } from 'src/app/modules/shared/helpers/MatchValidator';
+import { MustMatchValidators, CustomValidators } from 'src/app/modules/shared/helpers/MatchValidator';
 import { emailPattern } from 'src/app/modules/shared/helpers/validation.helper';
 
 @Component({
@@ -51,8 +51,8 @@ export class RegisterComponent implements OnInit {
       name: ['', Validators.required],
       username: ['', Validators.required],
       email: ['', [Validators.required, Validators.pattern(emailPattern())]],
-      password: ['', [Validators.required]],
-      confirmPassword: ['', [Validators.required]],
+      password: ['', [Validators.required, CustomValidators.passwordContainsNumber]],
+      confirmPassword: ['', [Validators.required, CustomValidators.passwordContainsNumber]],
     }, {
       validator: MustMatchValidators('password', 'confirmPassword')
     });
