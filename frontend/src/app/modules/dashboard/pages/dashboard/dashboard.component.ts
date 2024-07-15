@@ -19,6 +19,10 @@ export class DashboardComponent implements OnInit {
     console.log(this.currentUser);
   }
 
+  navigateToRoute(route) {
+    this.router.navigate(['../', route]);
+  }
+
   goToAdmin() {
     this.router.navigate(['/admin']);
   }

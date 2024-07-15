@@ -145,7 +145,6 @@ export class AuthenticationService {
    * @param AccessData: data
    */
   public saveAccessData(accessData) {
-    console.log('call>>>>>>>>>>>', accessData);
     if (typeof accessData !== 'undefined') {
       this.tokenStorage
         // .setUserInfo(accessData.data.user)

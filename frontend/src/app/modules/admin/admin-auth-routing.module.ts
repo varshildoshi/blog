@@ -8,9 +8,11 @@ import { AdminAuthLayoutComponent } from './pages/admin-auth-layout/admin-auth-l
 
 const routes: Routes = [
   {
-    path: '', component: AdminAuthLayoutComponent,
+    path: '',
+    component: AdminAuthLayoutComponent,
     children: [
-      { path: '', component: AdminLoginComponent }
+      { path: 'login', component: AdminLoginComponent },
+      { path: '', pathMatch: 'full', redirectTo: 'login' }
     ]
   }
 ];
@@ -19,4 +21,6 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
+
+
 export class AdminAuthRoutingModule { }

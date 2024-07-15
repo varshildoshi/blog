@@ -7,6 +7,7 @@ import { UiModulesRouting } from './ui-modules-routing.module';
 import { SharedModule } from './shared/shared.module';
 import { BaseComponent } from './base/pages/base/base.component';
 import { AuthenticationService } from './services/authentication.service';
+import { UserService } from './services/user.service';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { AuthenticationService } from './services/authentication.service';
   ],
   exports: [UiModulesRouting, SharedModule],
   providers: [
-    AuthenticationService
+    AuthenticationService,
+    UserService
   ]
 })
 export class UiModule { }
