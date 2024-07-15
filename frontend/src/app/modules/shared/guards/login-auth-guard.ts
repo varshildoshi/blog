@@ -2,12 +2,12 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { CanActivate, Router, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { map } from 'rxjs/operators';
-import { AuthenticationService } from '../../../state/auth/services/authentication.service';
+import { AuthenticationService } from '../../services/authentication.service';
 
 @Injectable({
     providedIn: 'root',
 })
-export class AdminLoginAuthorizationGuardService implements CanActivate {
+export class LoginAuthGuard implements CanActivate {
 
     constructor(
         private router: Router,
@@ -22,9 +22,9 @@ export class AdminLoginAuthorizationGuardService implements CanActivate {
 
     checkIfAuthorized(route: ActivatedRouteSnapshot,
                       state: RouterStateSnapshot): Observable<boolean> | boolean {
-        return this.authenticationService.isAuthorizedAdmin().pipe(map(isAuthorized => {
-            if (isAuthorized) {
-                this.router.navigate(['admin/dashboard']);
+        return this.authenticationService.isAuthorized().pipe(map((isAuthorized: any) => {
+            if (isAuthorized.isLoggedIn) {
+                this.router.navigate(['/dashboard']);
                 return false;
             }
             return true;
