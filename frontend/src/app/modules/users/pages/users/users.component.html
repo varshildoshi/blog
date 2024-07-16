@@ -25,13 +25,15 @@
 
         <ng-container matColumnDef="role">
             <mat-header-cell *matHeaderCellDef>Role</mat-header-cell>
-            <mat-cell *matCellDef="let row"> {{row.role}} </mat-cell>
+            <mat-cell *matCellDef="let row">
+                {{row.role | uppercase}}
+            </mat-cell>
         </ng-container>
 
     </mat-table>
 
     <mat-paginator [length]="dataSource.meta.totalItems" [pageSize]="dataSource.meta.itemsPerPage"
-        [pageSizeOptions]="[5,10,25,100]" (page)="pageEvent = $event; onPaginateChabge($event)"
-        aria-label="Select page" showFirstLastButtons>
+        [pageSizeOptions]="[5,10,25,100]" (page)="pageEvent = $event; onPaginateChange($event)" aria-label="Select page"
+        showFirstLastButtons>
     </mat-paginator>
 </div>

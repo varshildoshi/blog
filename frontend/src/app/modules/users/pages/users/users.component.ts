@@ -28,7 +28,7 @@ export class UsersComponent implements OnInit {
     ).subscribe();
   }
 
-  onPaginateChabge(event: PageEvent) {
+  onPaginateChange(event: PageEvent) {
     let page = event.pageIndex;
     let size = event.pageSize;
 
