@@ -38,4 +38,16 @@ export class UserService {
       catchError(err => throwError(err))
     );
   }
+
+  getUsersBySearchFilter(page: number, size: number, username: string): Observable<any> {
+    let params = new HttpParams();
+    params = params.append('page', String(page));
+    params = params.append('limit', String(size));
+    params = params.append('username', username);
+
+    return this.http.get(environment.baseURL + 'users', { params }).pipe(
+      map((userData: any) => userData),
+      catchError(err => throwError(err))
+    );
+  }
 }

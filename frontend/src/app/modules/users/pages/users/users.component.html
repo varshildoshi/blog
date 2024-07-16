@@ -1,3 +1,8 @@
+<mat-form-field appearance="standard">
+    <mat-label>Search</mat-label>
+    <input matInput [(ngModel)]="filterValue" (input)="applyFilter(filterValue)" placeholder="Search" #input>
+</mat-form-field>
+
 <div *ngIf="dataSource">
     <mat-table [dataSource]="dataSource.items">
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

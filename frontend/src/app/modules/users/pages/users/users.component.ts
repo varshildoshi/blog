@@ -12,7 +12,8 @@ export class UsersComponent implements OnInit {
 
   dataSource;
   displayedColumns: string[] = ['id', 'name', 'username', 'email', 'role'];
-  pageEvent: PageEvent
+  pageEvent: PageEvent;
+  filterValue: string = null;
 
   constructor(
     private userService: UserService
@@ -32,8 +33,21 @@ export class UsersComponent implements OnInit {
     let page = event.pageIndex;
     let size = event.pageSize;
 
-    page = page + 1;
-    this.userService.getAllUsers(page, size).pipe(
+    if (this.filterValue === null) {
+      page = page + 1;
+      this.userService.getAllUsers(page, size).pipe(
+        map((userData: any) => this.dataSource = userData)
+      ).subscribe();
+    } else {
+      this.userService.getUsersBySearchFilter(page, size, this.filterValue).pipe(
+        map((userData: any) => this.dataSource = userData)
+      ).subscribe();
+    }
+
+  }
+
+  applyFilter(username: string) {
+    this.userService.getUsersBySearchFilter(0, 10, username).pipe(
       map((userData: any) => this.dataSource = userData)
     ).subscribe();
   }
