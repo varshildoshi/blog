@@ -207,6 +207,67 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "image upload",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxLCJuYW1lIjoiVmFyc2hpbCBEb3NoaSIsInVzZXJuYW1lIjoiVmFyc2hpbCB0ZXN0MSIsImVtYWlsIjoidmFyc2hpbEBnbWFpbC5jb20iLCJyb2xlIjoidXNlciJ9LCJpYXQiOjE3MjExMzI2OTcsImV4cCI6MTcyMTE0MjY5N30.Fe8d3ab1QScsf6o5kJyr-u7TAqM-yK8Q_jkCv14LPTw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/C:/Users/Varshil Doshi/Downloads/Picture2.png"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/users/upload",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"users",
+						"upload"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get profile-image",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/users/profile-image/Picture28342b7de-dff8-4dc8-b546-cbdb4e972a13.png",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"users",
+						"profile-image",
+						"Picture28342b7de-dff8-4dc8-b546-cbdb4e972a13.png"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }
