@@ -50,4 +50,10 @@ export class UserService {
       catchError(err => throwError(err))
     );
   }
+
+  getUserById(id): Observable<any> {
+    return this.http.get(environment.baseURL + `users/${id}`).pipe(
+      map((user: any) => user)
+    )
+  }
 }

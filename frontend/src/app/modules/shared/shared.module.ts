@@ -19,6 +19,9 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatBadgeModule } from '@angular/material/badge';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatGridListModule } from '@angular/material/grid-list';
 
 @NgModule({
   declarations: [
@@ -42,6 +45,9 @@ import { MatBadgeModule } from '@angular/material/badge';
     MatTableModule,
     MatPaginatorModule,
     MatBadgeModule,
+    MatTooltipModule,
+    MatDialogModule,
+    MatGridListModule,
   ],
   exports: [
     FlexLayoutModule,
@@ -59,6 +65,9 @@ import { MatBadgeModule } from '@angular/material/badge';
     MatTableModule,
     MatPaginatorModule,
     MatBadgeModule,
+    MatTooltipModule,
+    MatDialogModule,
+    MatGridListModule,
   ],
   providers: [
   ]

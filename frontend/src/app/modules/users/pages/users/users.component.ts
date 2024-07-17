@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import { map, tap } from 'rxjs';
 import { UserService } from 'src/app/modules/services/user.service';
+import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { ViewComponent } from '../view/view.component';
 
 @Component({
   selector: 'app-users',
@@ -11,12 +13,13 @@ import { UserService } from 'src/app/modules/services/user.service';
 export class UsersComponent implements OnInit {
 
   dataSource;
-  displayedColumns: string[] = ['id', 'name', 'username', 'email', 'role'];
+  displayedColumns: string[] = ['id', 'name', 'username', 'email', 'role', 'actions'];
   pageEvent: PageEvent;
   filterValue: string = null;
 
   constructor(
-    private userService: UserService
+    private userService: UserService,
+    public dialog: MatDialog
   ) { }
 
   ngOnInit(): void {
@@ -50,6 +53,16 @@ export class UsersComponent implements OnInit {
     this.userService.getUsersBySearchFilter(0, 10, username).pipe(
       map((userData: any) => this.dataSource = userData)
     ).subscribe();
+  }
+
+  openDialog(id) {
+    this.dialog.open(ViewComponent, {
+      data: {
+        userId: id,
+      },
+      width: '500px',
+      height: '300px'
+    });
   }
 
 }

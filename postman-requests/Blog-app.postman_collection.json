@@ -268,6 +268,45 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "update user detail with self user",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxLCJuYW1lIjoiVmFyc2hpbCBEb3NoaSIsInVzZXJuYW1lIjoiVmFyc2hpbCB0ZXN0MSIsImVtYWlsIjoidmFyc2hpbEBnbWFpbC5jb20iLCJyb2xlIjoidXNlciIsInByb2ZpbGVJbWFnZSI6IlBpY3R1cmUyODM0MmI3ZGUtZGZmOC00ZGM4LWI1NDYtY2JkYjRlOTcyYTEzLnBuZyJ9LCJpYXQiOjE3MjExODU2NzgsImV4cCI6MTcyMTE5NTY3OH0.XyMzd9Pou_sq0v2skJvkLu-qkf04Gwr2163zWkyMrGM",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"varshil update2\",\r\n    \"username\": \"varshil username update2\",\r\n    \"email\": \"nonono\",\r\n    \"password\": \"nonono\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/users/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"users",
+						"1"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }
