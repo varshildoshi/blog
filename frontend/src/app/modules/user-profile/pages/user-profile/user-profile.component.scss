@@ -1,0 +1,79 @@
+.ds-container {
+    width: 50%;
+    margin: auto;
+    margin-top: 30px !important;
+
+    .cs-card-header {
+        margin: 10px 0px;
+        display: flex;
+        align-content: center;
+        justify-content: space-between;
+        align-items: baseline;
+    }
+
+    .mat-card-header-text {
+        margin-left: 0px !important;
+    }
+}
+
+.cs-action {
+    margin: 15px 27px;
+}
+
+.action-div {
+    justify-content: flex-end !important;
+}
+
+.example-form {
+    min-width: 100%;
+    max-width: 300px;
+    width: 100%;
+}
+
+.example-full-width {
+    width: 100% !important;
+}
+
+.div-container {
+    display: flex;
+    align-content: center;
+    align-items: stretch;
+
+    .img-container {
+        border: 2px solid #8c8c8c;
+        display: flex;
+        align-content: center;
+        justify-content: center;
+        align-items: center;
+        border-radius: 10px;
+        padding: 5px;
+        margin-right: 15px;
+
+        .cs-img {
+            height: 140px;
+            width: 140px;
+            border-radius: 10px;
+        }
+    }
+
+    .cs-container {
+        display: flex;
+        align-content: center;
+        align-items: center;
+    }
+
+    .cs-margin-bottom {
+        margin-bottom: 0px !important;
+    }
+}
+
+input[type="file"] {
+    font-size: 100px;
+    left: 0;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    cursor: pointer;
+    width: 100px;
+    height: 35px;
+}

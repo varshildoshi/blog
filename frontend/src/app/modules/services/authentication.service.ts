@@ -1,9 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { catchError, Observable, of, retry, tap, throwError } from 'rxjs';
+import { catchError, map, Observable, of, retry, switchMap, tap, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { TokenStorage } from './token-storage.service';
+import jwt_decode from 'jwt-decode';
 
 @Injectable({
   providedIn: "root",

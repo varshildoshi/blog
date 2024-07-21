@@ -56,4 +56,14 @@ export class UserService {
       map((user: any) => user)
     )
   }
+
+  updateUser(payload): Observable<any> {
+    return this.http.put(environment.baseURL + `users/${payload.id}`, payload);
+  }
+
+  uploadProfile(image): Observable<any> {
+    let formParams = new FormData();
+    formParams.append('file', image)
+    return this.http.post(environment.baseURL + 'users/upload', formParams);
+  }
 }

@@ -8,8 +8,12 @@
         </button>
         <mat-menu #menu="matMenu">
             <div class="img-container">
-                <mat-card-subtitle class="subtitle-container">{{currentUser.name}}</mat-card-subtitle>
-                <img mat-card-md-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" class="cs-img">
+                <h2 class="subtitle-container">{{currentUser?.name}}</h2>
+                <img mat-card-md-image [src]="currentUser?.profilePic" class="cs-img">
+                <div class="cs-container">
+                    <mat-icon matSuffix class="secondary-text" color="primary">verified</mat-icon>
+                    <h3 class="cs-margin-bottom ml-5 mb-0">{{currentUser?.role | uppercase}}</h3>
+                </div>
             </div>
             <button mat-menu-item routerLink="/dashboard" routerLinkActive="routerActive" [routerLinkActiveOptions]="{exact:
                 true}">

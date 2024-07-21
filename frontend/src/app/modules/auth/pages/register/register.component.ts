@@ -71,8 +71,6 @@ export class RegisterComponent implements OnInit {
   onSubmit() {
     // Check form valid
     if (this.registerForm.invalid) {
-      // this.registerForm.markAsTouched();
-      // this.markAsTouched();
       Object.keys(this.registerForm.controls).forEach(controlName =>
         this.registerForm.controls[controlName].markAsTouched()
       );
@@ -108,16 +106,6 @@ export class RegisterComponent implements OnInit {
     ).subscribe();
   }
 
-
-  /**
-   * Marks all controls in a form group as touched
-   */
-  markAsTouched() {
-    const controls = this.registerForm.controls;
-    Object.keys(controls).forEach(controlName =>
-      controls[controlName].markAllAsTouched()
-    );
-  }
 
   /**
    * On destroy

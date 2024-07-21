@@ -100,6 +100,8 @@ export class UserController {
     @Post('upload')
     @UseInterceptors(FileInterceptor('file', storage))
     uploadFile(@UploadedFile() file, @Request() req): Observable<Object> {
+        console.log('req>>>>', req);
+        console.log('file>>>>', file);
         const user: UserInterface = req.user.user;
 
         return this.userService.update(user.id, { profileImage: file.filename }).pipe(

@@ -22,6 +22,7 @@ import { MatBadgeModule } from '@angular/material/badge';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
     MatTooltipModule,
     MatDialogModule,
     MatGridListModule,
+    MatSnackBarModule,
   ],
   exports: [
     FlexLayoutModule,
@@ -68,6 +70,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
     MatTooltipModule,
     MatDialogModule,
     MatGridListModule,
+    MatSnackBarModule,
   ],
   providers: [
   ]
