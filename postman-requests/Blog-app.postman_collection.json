@@ -307,6 +307,109 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "create blog",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxLCJuYW1lIjoidmFyc2hpbCB1cGRhdGUxIiwidXNlcm5hbWUiOiJ2YXJzaGlsIHVzZXJuYW1lIHVwZGF0ZTEiLCJlbWFpbCI6InZhcnNoaWxAZ21haWwuY29tIiwicm9sZSI6InVzZXIiLCJwcm9maWxlSW1hZ2UiOiJQaWN0dXJlMmIyZGIxZTNlLWY4YmQtNDk2OS1hZTBiLWM1Mzc3YTFkYjc5OS5wbmcifSwiaWF0IjoxNzIyNDUzNTI2LCJleHAiOjE3MjI0NjM1MjZ9.X0fnel5y_uEPLKMWl2WqMUnuhXt-kT6je_fPrpWXJgs",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"test title\",\r\n    \"description\": \"test description\",\r\n    \"body\": \"test body\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/blog",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"blog"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get blog by user",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxLCJuYW1lIjoidmFyc2hpbCB1cGRhdGUxIiwidXNlcm5hbWUiOiJ2YXJzaGlsIHVzZXJuYW1lIHVwZGF0ZTEiLCJlbWFpbCI6InZhcnNoaWxAZ21haWwuY29tIiwicm9sZSI6InVzZXIiLCJwcm9maWxlSW1hZ2UiOiJQaWN0dXJlMmIyZGIxZTNlLWY4YmQtNDk2OS1hZTBiLWM1Mzc3YTFkYjc5OS5wbmcifSwiaWF0IjoxNzIyNDkyNzU2LCJleHAiOjE3MjI1MDI3NTZ9.sv6JWif0iq4USwlCMVro3ITmr59EYFZIYkR-keKP_4s",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/blog?userId=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"blog"
+					],
+					"query": [
+						{
+							"key": "userId",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Findone blog request",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxLCJuYW1lIjoidmFyc2hpbCB1cGRhdGUxIiwidXNlcm5hbWUiOiJ2YXJzaGlsIHVzZXJuYW1lIHVwZGF0ZTEiLCJlbWFpbCI6InZhcnNoaWxAZ21haWwuY29tIiwicm9sZSI6InVzZXIiLCJwcm9maWxlSW1hZ2UiOiJQaWN0dXJlMmIyZGIxZTNlLWY4YmQtNDk2OS1hZTBiLWM1Mzc3YTFkYjc5OS5wbmcifSwiaWF0IjoxNzIyNDkyNzU2LCJleHAiOjE3MjI1MDI3NTZ9.sv6JWif0iq4USwlCMVro3ITmr59EYFZIYkR-keKP_4s",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/blog/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"blog",
+						"2"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }

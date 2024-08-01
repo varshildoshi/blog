@@ -1,15 +1,15 @@
-import { User } from "src/user/models/user.entity";
+import { UserInterface } from "src/user/models/user.interface";
 
 export interface BlogEntry {
-    id?: string;
+    id?: number;
     title?: string;
     slug?: string;
     description?: string;
     body?: string;
-    createdAt: Date;
-    updatedAt: Date;
+    createdAt?: Date;
+    updatedAt?: Date;
     likes?: number;
-    author?: User;
+    author?: UserInterface;
     headerImage?: string;
     publishedDate?: Date;
     isPublished?: boolean;

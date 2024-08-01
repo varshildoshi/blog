@@ -5,7 +5,7 @@ import { BeforeUpdate, Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 
 export class BlogEntryEntity {
 
     @PrimaryGeneratedColumn()
-    id: string;
+    id: number;
 
     @Column()
     title: string;
@@ -33,17 +33,16 @@ export class BlogEntryEntity {
     @Column({default: 0})
     likes: number;
 
-    @Column()
+    @Column({nullable: true})
     headerImage: string;
 
-    @Column()
+    @Column({nullable: true})
     publishedDate: Date;
 
-
-    @Column()
+    @Column({nullable: true})
     isPublished: boolean;
 
-    @ManyToOne(type => User, user => user.blog)
+    @ManyToOne(type => User, user => user.blogEntries)
     author: User;
 
 }

@@ -47,7 +47,7 @@ export class UserService {
     }
 
     findOne(id: number): Observable<UserInterface> {
-        return from(this.userRepository.findOneBy({ id })).pipe(
+        return from(this.userRepository.findOne({ where: { id }, relations: ['blogEntries'] })).pipe(
             map((user: UserInterface) => {
                 const { password, ...result } = user;
                 return result;
@@ -126,8 +126,12 @@ export class UserService {
     }
 
     validateUser(email: string, password: string): Observable<UserInterface> {
-        return this.findByMail(email).pipe(
-            switchMap((user: UserInterface) => this.authService.comparePassword(password, user.password).pipe(
+        return from(this.userRepository.findOne({
+            where: { email: email }, select: {
+                id: true, name: true, username: true, email: true, password: true, role: true, profileImage: true
+            }
+        })).pipe(
+            switchMap((user: User) => this.authService.comparePassword(password, user.password).pipe(
                 map((match: boolean) => {
                     if (match) {
                         const { password, ...result } = user;
@@ -137,7 +141,8 @@ export class UserService {
                     }
                 })
             ))
-        );
+        )
+
     }
 
     findByMail(email: string): Observable<UserInterface> {
