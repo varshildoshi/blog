@@ -13,7 +13,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"name\": \"Varshil Doshi\",\r\n    \"username\": \"Varshil test4\",\r\n    \"email\": \"varshil@gmail.com\",\r\n    \"password\": \"simplePassword\"\r\n}",
+					"raw": "{\r\n    \"name\": \"Kalpana Panchal\",\r\n    \"username\": \"Kalpana test4\",\r\n    \"email\": \"kalpana12@gmail.com\",\r\n    \"password\": \"simplePassword1\",\r\n    \"role\": \"user\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -216,7 +216,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxLCJuYW1lIjoiVmFyc2hpbCBEb3NoaSIsInVzZXJuYW1lIjoiVmFyc2hpbCB0ZXN0MSIsImVtYWlsIjoidmFyc2hpbEBnbWFpbC5jb20iLCJyb2xlIjoidXNlciJ9LCJpYXQiOjE3MjExMzI2OTcsImV4cCI6MTcyMTE0MjY5N30.Fe8d3ab1QScsf6o5kJyr-u7TAqM-yK8Q_jkCv14LPTw",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxLCJuYW1lIjoidmFyc2hpbCB1cGRhdGUxIiwidXNlcm5hbWUiOiJ2YXJzaGlsIHVzZXJuYW1lIHVwZGF0ZTEiLCJlbWFpbCI6InZhcnNoaWxAZ21haWwuY29tIiwicm9sZSI6InVzZXIiLCJwcm9maWxlSW1hZ2UiOiJQaWN0dXJlMjgzNDJiN2RlLWRmZjgtNGRjOC1iNTQ2LWNiZGI0ZTk3MmExMy5wbmcifSwiaWF0IjoxNzIxMzk1Njg3LCJleHAiOjE3MjE0MDU2ODd9.aCGn3BxboNWYgVZinfJw_hZ-QLzqZnXJEF8EYKciw_M",
 							"type": "string"
 						}
 					]
@@ -406,6 +406,75 @@
 					"path": [
 						"blog",
 						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update blog",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxLCJuYW1lIjoidmFyc2hpbCB1cGRhdGUxIiwidXNlcm5hbWUiOiJ2YXJzaGlsIHVzZXJuYW1lIHVwZGF0ZTEiLCJlbWFpbCI6InZhcnNoaWxAZ21haWwuY29tIiwicm9sZSI6ImFkbWluIiwicHJvZmlsZUltYWdlIjoiUGljdHVyZTJiMmRiMWUzZS1mOGJkLTQ5NjktYWUwYi1jNTM3N2ExZGI3OTkucG5nIn0sImlhdCI6MTcyMjYyNTMyOSwiZXhwIjoxNzIyNjM1MzI5fQ.yncLfQdXZRqBu3ddTn27X6R2u2iibJpTNyycsVqQZGM",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"title updated\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/blog/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"blog",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete blog",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxLCJuYW1lIjoidmFyc2hpbCB1cGRhdGUxIiwidXNlcm5hbWUiOiJ2YXJzaGlsIHVzZXJuYW1lIHVwZGF0ZTEiLCJlbWFpbCI6InZhcnNoaWxAZ21haWwuY29tIiwicm9sZSI6ImFkbWluIiwicHJvZmlsZUltYWdlIjoiUGljdHVyZTJiMmRiMWUzZS1mOGJkLTQ5NjktYWUwYi1jNTM3N2ExZGI3OTkucG5nIn0sImlhdCI6MTcyMjYyNjAwOSwiZXhwIjoxNzIyNjM2MDA5fQ.SVRvZpcIjOrXbrpm2bG5V686Vw_866OtkaRD4mpkOF4",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/blog/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"blog",
+						"3"
 					]
 				}
 			},
