@@ -61,9 +61,10 @@ export class UserService {
     return this.http.put(environment.baseURL + `users/${payload.id}`, payload);
   }
 
-  uploadProfile(image): Observable<any> {
-    let formParams = new FormData();
-    formParams.append('file', image)
-    return this.http.post(environment.baseURL + 'users/upload', formParams);
+  uploadProfile(formData: FormData): Observable<any> {
+    return this.http.post<FormData>(environment.baseURL + 'users/upload', formData, {
+      reportProgress: true,
+      observe: 'events'
+    });
   }
 }

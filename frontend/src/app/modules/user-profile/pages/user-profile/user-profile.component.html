@@ -2,64 +2,81 @@
     <mat-card>
         <mat-card-header class="cs-card-header">
             <mat-card-title>Profile</mat-card-title>
-            <button mat-raised-button color="primary" (click)="editProfileOn()">Edit Profile</button>
         </mat-card-header>
-        <div fxLayout="row" fxLayoutAlign="center center">
-            <mat-icon *ngIf="loading">
+        <div fxLayout="row" fxLayoutAlign="center center" *ngIf="loading">
+            <mat-icon>
                 <mat-spinner color="primary"></mat-spinner>
             </mat-icon>
         </div>
-        <div class="div-container">
-            <div class="img-container">
-                <img [src]="currentUser?.profilePic || imagePreview" alt="" class="cs-img">
-            </div>
-            <div style="width: 70%;">
-                <form [formGroup]="profileForm" novalidate autocomplete="off">
-                    <div class="cs-container" *ngIf="!isEdit">
-                        <mat-icon matSuffix class="secondary-text" color="primary">person</mat-icon>
-                        <h1 class="cs-margin-bottom ml-5">{{currentUser?.name}}</h1>
-                    </div>
-                    <div class="cs-container" *ngIf="isEdit">
-                        <p style="width: 70%;">
-                            <mat-form-field class="example-full-width">
-                                <input matInput placeholder="Name" formControlName="name">
-                                <mat-error
-                                    *ngIf="profileForm.controls['name'].errors && profileForm.controls['name'].errors.required">Please
-                                    enter name</mat-error>
-                            </mat-form-field>
-                        </p>
-                    </div>
 
-                    <div class="cs-container" *ngIf="!isEdit">
-                        <mat-icon matSuffix class="secondary-text" color="primary">account_box</mat-icon>
-                        <h2 class="cs-margin-bottom ml-5">{{currentUser?.username}}</h2>
-                    </div>
-                    <div class="cs-container" *ngIf="isEdit">
-                        <p style="width: 70%;">
-                            <mat-form-field class="example-full-width">
-                                <input matInput placeholder="User Name" formControlName="username">
-                                <mat-error
-                                    *ngIf="profileForm.controls['username'].errors && profileForm.controls['username'].errors.required">Please
-                                    enter user name</mat-error>
-                            </mat-form-field>
-                        </p>
-                    </div>
-                </form>
+        <div class="div-container">
+            <div class="container_one">
+                <div class="img-container">
+                    <img [src]="profileForm.controls['profilePic'].value || imagePreview" alt="" class="cs-img">
+
+                </div>
+                <div class="progress_container">
+                    <mat-progress-bar [value]="file.progress"></mat-progress-bar>
+                </div>
+                <div style="cursor: pointer;margin-top:7%;">
+                    <button mat-stroked-button color="primary" (click)="onClick()">Edit Image</button>
+                    <input type="file" #fileUpload />
+                </div>
+            </div>
+            <div class="container_two">
+                <div class="sub_container">
+                    <form [formGroup]="profileForm" novalidate autocomplete="off" class="cs_form">
+                        <div class="cs-container">
+                            <p>
+                                <mat-form-field class="example-full-width" appearance="outline">
+                                    <mat-label>Name</mat-label>
+                                    <input matInput placeholder="Name" formControlName="name">
+                                    <mat-error
+                                        *ngIf="profileForm.controls['name'].errors && profileForm.controls['name'].errors.required">Please
+                                        enter name</mat-error>
+                                </mat-form-field>
+                            </p>
+                        </div>
+
+                        <div class="cs-container">
+                            <p>
+                                <mat-form-field class="example-full-width" appearance="outline">
+                                    <mat-label>User Name</mat-label>
+                                    <input matInput placeholder="User Name" formControlName="username">
+                                    <mat-error
+                                        *ngIf="profileForm.controls['username'].errors && profileForm.controls['username'].errors.required">Please
+                                        enter user name</mat-error>
+                                </mat-form-field>
+                            </p>
+                        </div>
+
+                        <div class="cs-container">
+                            <p>
+                                <mat-form-field class="example-full-width" appearance="outline">
+                                    <mat-label>Email id</mat-label>
+                                    <input matInput placeholder="Email id" formControlName="email" readonly>
+                                </mat-form-field>
+                            </p>
+                        </div>
+
+                        <div class="cs_role_container">
+                            <div class="example_label">Role:</div>
+                            <mat-chip-list>
+                                <mat-chip color="primary" selected>{{profileForm.controls['role'].value |
+                                    uppercase}}</mat-chip>
+                            </mat-chip-list>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
-        <div fxLayout="row" fxLayoutAlign="left" class="cs-action" *ngIf="isEdit">
-            <button mat-raised-button color="primary">
-                <input type="file" #fileInput (change)="readURL($event)" />Edit Image
-            </button>
-        </div>
+
         <div fxLayout="row" fxLayoutAlign="right right" class="action-div">
-            <button mat-raised-button color="primary" style="margin-right: 10px;" *ngIf="isEdit"
-                (click)="onSubmit()">Update
+            <button mat-raised-button color="primary" style="margin-right: 10px;" (click)="onSubmit()">Update
                 <mat-icon *ngIf="loading">
                     <mat-spinner color="accent" diameter="20"></mat-spinner>
                 </mat-icon>
             </button>
-            <button mat-raised-button color="primary" (click)="editProfileOn()" routerLink="/dashboard">Cancel</button>
         </div>
     </mat-card>
 </div>

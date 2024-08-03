@@ -23,6 +23,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatChipsModule } from '@angular/material/chips';
 
 @NgModule({
   declarations: [
@@ -50,6 +52,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     MatDialogModule,
     MatGridListModule,
     MatSnackBarModule,
+    MatProgressBarModule,
+    MatChipsModule,
   ],
   exports: [
     FlexLayoutModule,
@@ -71,6 +75,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     MatDialogModule,
     MatGridListModule,
     MatSnackBarModule,
+    MatProgressBarModule,
+    MatChipsModule,
   ],
   providers: [
   ]

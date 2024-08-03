@@ -1,4 +1,5 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { HttpErrorResponse, HttpEventType } from '@angular/common/http';
+import { ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
@@ -8,6 +9,12 @@ import { UserService } from 'src/app/modules/services/user.service';
 import { CommonFunction } from 'src/app/modules/shared/common-function/common-function';
 import { getUserDetails } from 'src/app/modules/shared/helpers/jwt.helper';
 import { environment } from 'src/environments/environment';
+
+export interface File {
+  data: any,
+  progress: number,
+  inProgress: boolean
+}
 
 @Component({
   selector: 'app-user-profile',
@@ -25,9 +32,15 @@ export class UserProfileComponent implements OnInit {
   currentUser: any;
   defaultProfile = '../../../../../assets/images/blank-profile-picture.png';
   imagePreview;
-  isEdit = false;
   userId;
   fileObject;
+
+  @ViewChild('fileUpload', { static: false }) fileUpload: ElementRef;
+  file: File = {
+    data: null,
+    inProgress: false,
+    progress: 0
+  }
 
   /**
    * Component constructor
@@ -53,6 +66,9 @@ export class UserProfileComponent implements OnInit {
       id: [''],
       name: ['', Validators.required],
       username: ['', Validators.required],
+      email: [''],
+      role: [''],
+      profilePic: ['']
     });
 
     let user = getUserDetails(localStorage.getItem('access_token'))['user'];
@@ -63,37 +79,52 @@ export class UserProfileComponent implements OnInit {
   getUserById() {
     this.userService.getUserById(this.userId).pipe(
       map((user: any) => {
-        if (!user.profileImage) {
-          this.currentUser = {
-            ...user,
-            profilePic: this.defaultProfile
-          }
-        } else {
-          this.currentUser = {
-            ...user,
-            profilePic: `${environment.baseURL}users/profile-image/${user.profileImage}`
-          }
-        }
-        this.formPatch();
+        this.profileForm.patchValue({
+          ...user,
+          profilePic: user.profileImage ? `${environment.baseURL}users/profile-image/${user.profileImage}` : this.defaultProfile
+        })
       })
     ).subscribe();
   }
 
-  editProfileOn() {
-    this.isEdit = !this.isEdit;
+  onClick() {
+    const fileInput = this.fileUpload.nativeElement;
+    fileInput.click();
+    fileInput.onchange = () => {
+      this.file = {
+        data: fileInput.files[0],
+        inProgress: false,
+        progress: 0
+      }
+      this.fileUpload.nativeElement.value = '';
+      this.uploadFile();
+    }
   }
 
-  readURL(event): void {
-    if (event.target.files && event.target.files[0]) {
-      const file = event.target.files[0];
-      this.fileObject = event.target.files[0];
+  uploadFile() {
+    const formData = new FormData;
+    formData.append('file', this.file.data);
+    this.file.inProgress = true;
 
-      const reader = new FileReader();
-      reader.onload = e => this.imagePreview = reader.result;
-
-      reader.readAsDataURL(file);
-      this.currentUser.profilePic = '';
-    }
+    this.userService.uploadProfile(formData).pipe(
+      map((event) => {
+        switch (event.type) {
+          case HttpEventType.UploadProgress:
+            console.log('fdgdfgd');
+            this.file.progress = Math.round(event.loaded * 100 / event.total);
+            break;
+          case HttpEventType.Response:
+            return event;
+        }
+      }),
+      catchError((error: HttpErrorResponse) => {
+        this.file.inProgress = false;
+        return of('Upload failed');
+      })).subscribe((event: any) => {
+        if (typeof (event) === 'object') {
+          this.profileForm.patchValue({ profilePic: `${environment.baseURL}users/profile-image/${event.body.profileImage}` });
+        }
+      });
   }
 
   formPatch() {
@@ -114,67 +145,32 @@ export class UserProfileComponent implements OnInit {
   onSubmit() {
     // Check form valid
     if (this.profileForm.invalid) {
-      // this.registerForm.markAsTouched();
-      // this.markAsTouched();
       Object.keys(this.profileForm.controls).forEach(controlName =>
         this.profileForm.controls[controlName].markAsTouched()
       );
       return;
     }
     this.loading = true;
-    // Payload
-    // const payload = assign({}, formValue, 'LOGIN_CONFIG');
-
+    let payload: any = {};
+    console.log(this.profileForm.value);
+    payload.email = this.profileForm.value.email;
+    payload.id = this.profileForm.value.id;
+    payload.name = this.profileForm.value.name;
+    payload.username = this.profileForm.value.username;
     // Service Call
-
-    console.log('this.fileObject>>>>', this.fileObject);
-
-    this.userService.updateUser(this.profileForm.value).subscribe(response => {
-      console.log(response);
-      if (response && this.imagePreview) {
-        this.userService.uploadProfile(this.fileObject).subscribe(data => {
-          this.openSnackBar('User Updated..!');
-          this.getUserById();
-          this.isEdit = false;
-          this.loading = false;
-          this.cdr.markForCheck();
-        });
+    this.userService.updateUser(payload).subscribe(response => {
+      if (response) {
+        this.openSnackBar('User Updated..!');
+        this.getUserById();
+        this.loading = false;
+        this.cdr.markForCheck();
       } else {
         this.openSnackBar('Somthing Went Wrong..!');
         this.getUserById();
-        this.isEdit = false;
         this.loading = false;
         this.cdr.markForCheck();
       }
     })
-
-    // this.userService.updateUser(this.profileForm.value).pipe(tap(res => {
-    //   if (res) {
-    //     // Navigate to Dashbord.
-    //     this.openSnackBar('User Updated..!');
-    //     this.getUserById();
-    //     this.isEdit = false;
-    //   } else {
-    //     // this.authNoticeService.setNotice(this.translate.instant('AUTH.VALIDATION.INVALID_LOGIN'), 'danger');
-    //     this.openSnackBar('Somthing Went Wrong..!');
-    //     this.getUserById();
-    //     this.isEdit = false;
-    //   }
-    // }),
-    //   catchError(err => {
-    //     console.log(err);
-    //     if (err.error.msg_code === 114) {
-    //       this.errorMessage = err;
-    //     }
-    //     // this.authNoticeService.setNotice(err.error.message, 'error');
-    //     return of(err);
-    //   }),
-    //   takeUntil(this.unsubscribe),
-    //   finalize(() => {
-    //     this.loading = false;
-    //     this.cdr.markForCheck();
-    //   })
-    // ).subscribe();
   }
 
   /**
