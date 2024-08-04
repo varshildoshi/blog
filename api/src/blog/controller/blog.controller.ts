@@ -5,8 +5,10 @@ import { BlogEntry } from '../model/blog.interface';
 import { JwtAuthGuard } from 'src/auth/guards/jwt-guard';
 import { UserIsAuthorGuard } from '../guards/userIsAuthor-guard';
 
-@Controller('blog')
+@Controller('blog-entries')
 export class BlogController {
+
+    BLOG_ENTRIES_URL = 'http://localhost:3000/blog-entries';
 
     constructor(
         private blogService: BlogService
@@ -19,13 +21,40 @@ export class BlogController {
         return this.blogService.create(user, blogEntry);
     }
 
-    @Get()
-    findBlogEntries(@Query('userId') userId: number): Observable<BlogEntry[]> {
-        if (userId == null) {
-            return this.blogService.findAllBlog();
-        } else {
-            return this.blogService.findByUser(userId);
-        }
+    // @Get()
+    // findBlogEntries(@Query('userId') userId: number): Observable<BlogEntry[]> {
+    //     if (userId == null) {
+    //         return this.blogService.findAllBlog();
+    //     } else {
+    //         return this.blogService.findByUser(userId);
+    //     }
+    // }
+
+    @Get('')
+    index(
+        @Query('page') page: number = 1,
+        @Query('limit') limit: number = 10
+    ) {
+        limit = limit > 100 ? 100 : limit;
+        return this.blogService.paginateAll({
+            limit: Number(limit),
+            page: Number(page),
+            route: this.BLOG_ENTRIES_URL
+        })
+    }
+
+    @Get('user/:user')
+    indexByUser(
+        @Query('page') page: number = 1,
+        @Query('limit') limit: number = 10,
+        @Param('user') userId: number
+    ) {
+        limit = limit > 100 ? 100 : limit;
+        return this.blogService.paginateByUser({
+            limit: Number(limit),
+            page: Number(page),
+            route: this.BLOG_ENTRIES_URL
+        }, Number(userId))
     }
 
     @Get(':id')
