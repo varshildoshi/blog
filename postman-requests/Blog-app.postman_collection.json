@@ -7,141 +7,575 @@
 	},
 	"item": [
 		{
-			"name": "Create user",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"name\": \"Kalpana Panchal\",\r\n    \"username\": \"Kalpana test4\",\r\n    \"email\": \"kalpana12@gmail.com\",\r\n    \"password\": \"simplePassword1\",\r\n    \"role\": \"user\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
+			"name": "Blog Entries",
+			"item": [
+				{
+					"name": "create blog",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxLCJuYW1lIjoidmFyc2hpbCB1cGRhdGUxIiwidXNlcm5hbWUiOiJ2YXJzaGlsIHVzZXJuYW1lIHVwZGF0ZTEiLCJlbWFpbCI6InZhcnNoaWxAZ21haWwuY29tIiwicm9sZSI6ImFkbWluIiwicHJvZmlsZUltYWdlIjoiUGljdHVyZTJiMmRiMWUzZS1mOGJkLTQ5NjktYWUwYi1jNTM3N2ExZGI3OTkucG5nIn0sImlhdCI6MTcyMjYyNTA2NSwiZXhwIjoxNzIyNjM1MDY1fQ.Hk-nxGHWeQJ6tCKpxN3LRPrC1AWX9-lYqkxlNKIWb2s",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"test title2\",\r\n    \"description\": \"test description2\",\r\n    \"body\": \"test body2\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/blog-entries",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"blog-entries"
+							]
 						}
-					}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "http://localhost:3000/users/",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"users",
-						""
-					]
+				{
+					"name": "Get blog by user id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxLCJuYW1lIjoidmFyc2hpbCB1cGRhdGUxIiwidXNlcm5hbWUiOiJ2YXJzaGlsIHVzZXJuYW1lIHVwZGF0ZTEiLCJlbWFpbCI6InZhcnNoaWxAZ21haWwuY29tIiwicm9sZSI6InVzZXIiLCJwcm9maWxlSW1hZ2UiOiJQaWN0dXJlMmIyZGIxZTNlLWY4YmQtNDk2OS1hZTBiLWM1Mzc3YTFkYjc5OS5wbmcifSwiaWF0IjoxNzIyNDkyNzU2LCJleHAiOjE3MjI1MDI3NTZ9.sv6JWif0iq4USwlCMVro3ITmr59EYFZIYkR-keKP_4s",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/blog-entries?userId=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"blog-entries"
+							],
+							"query": [
+								{
+									"key": "userId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Findone blog request",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxLCJuYW1lIjoidmFyc2hpbCB1cGRhdGUxIiwidXNlcm5hbWUiOiJ2YXJzaGlsIHVzZXJuYW1lIHVwZGF0ZTEiLCJlbWFpbCI6InZhcnNoaWxAZ21haWwuY29tIiwicm9sZSI6InVzZXIiLCJwcm9maWxlSW1hZ2UiOiJQaWN0dXJlMmIyZGIxZTNlLWY4YmQtNDk2OS1hZTBiLWM1Mzc3YTFkYjc5OS5wbmcifSwiaWF0IjoxNzIyNDkyNzU2LCJleHAiOjE3MjI1MDI3NTZ9.sv6JWif0iq4USwlCMVro3ITmr59EYFZIYkR-keKP_4s",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/blog-entries/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"blog-entries",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update blog",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxLCJuYW1lIjoidmFyc2hpbCB1cGRhdGUxIiwidXNlcm5hbWUiOiJ2YXJzaGlsIHVzZXJuYW1lIHVwZGF0ZTEiLCJlbWFpbCI6InZhcnNoaWxAZ21haWwuY29tIiwicm9sZSI6ImFkbWluIiwicHJvZmlsZUltYWdlIjoiUGljdHVyZTJiMmRiMWUzZS1mOGJkLTQ5NjktYWUwYi1jNTM3N2ExZGI3OTkucG5nIn0sImlhdCI6MTcyMjYyNTMyOSwiZXhwIjoxNzIyNjM1MzI5fQ.yncLfQdXZRqBu3ddTn27X6R2u2iibJpTNyycsVqQZGM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"title updated\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/blog-entries/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"blog-entries",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete blog",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxLCJuYW1lIjoidmFyc2hpbCB1cGRhdGUxIiwidXNlcm5hbWUiOiJ2YXJzaGlsIHVzZXJuYW1lIHVwZGF0ZTEiLCJlbWFpbCI6InZhcnNoaWxAZ21haWwuY29tIiwicm9sZSI6ImFkbWluIiwicHJvZmlsZUltYWdlIjoiUGljdHVyZTJiMmRiMWUzZS1mOGJkLTQ5NjktYWUwYi1jNTM3N2ExZGI3OTkucG5nIn0sImlhdCI6MTcyMjYyNjAwOSwiZXhwIjoxNzIyNjM2MDA5fQ.SVRvZpcIjOrXbrpm2bG5V686Vw_866OtkaRD4mpkOF4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/blog-entries/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"blog-entries",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all blogs by pagination",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxLCJuYW1lIjoiVmFyc2hpbCIsInVzZXJuYW1lIjoiVmFyc2hpbCBEb3NoaSIsImVtYWlsIjoidmFyc2hpbEBnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJwcm9maWxlSW1hZ2UiOiJwZXhlbHMta3Jpc2x1Y2FzOTAtMzI2NDUwNDdkMjVjNDZiLTUzZGItNDg0Yy05MGQxLTI3MjE3ZjZmNTVlOC5qcGcifSwiaWF0IjoxNzIyNzc3NjAzLCJleHAiOjE3MjI3ODc2MDN9.HscZOntZGdbfZ1pibueG7KV88tKUNp27mbhtbGk-wkA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/blog-entries",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"blog-entries"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all blogs by user id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/blog-entries/user/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"blog-entries",
+								"user",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "upload blog image",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxLCJuYW1lIjoiVmFyc2hpbCIsInVzZXJuYW1lIjoiVmFyc2hpbCBEb3NoaSIsImVtYWlsIjoidmFyc2hpbEBnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJwcm9maWxlSW1hZ2UiOiJwZXhlbHMta3Jpc2x1Y2FzOTAtMzI2NDUwNDdkMjVjNDZiLTUzZGItNDg0Yy05MGQxLTI3MjE3ZjZmNTVlOC5qcGcifSwiaWF0IjoxNzIyNzc3NjAzLCJleHAiOjE3MjI3ODc2MDN9.HscZOntZGdbfZ1pibueG7KV88tKUNp27mbhtbGk-wkA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/Varshil Doshi/Downloads/planting-environment-nature-botany-preview.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/blog-entries/image/upload",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"blog-entries",
+								"image",
+								"upload"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get uploaded blog image by image name",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/blog-entries/image/planting-environment-nature-botany-preview4c1aaec3-123c-42a5-b279-4f6cdc7f9f06.jpg",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"blog-entries",
+								"image",
+								"planting-environment-nature-botany-preview4c1aaec3-123c-42a5-b279-4f6cdc7f9f06.jpg"
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			]
 		},
 		{
-			"name": "Get all users",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjo1LCJuYW1lIjoiVmFyc2hpbCBEb3NoaSIsInVzZXJuYW1lIjoiVmFyc2hpbCB0ZXN0MSIsImVtYWlsIjoidmFyc2hpbEBnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4ifSwiaWF0IjoxNzIwNjM4ODk5LCJleHAiOjE3MjA2NDg4OTl9.NjGOI-mIjSTDoy73IQGUUDcdjc3QeC1Q9_wFoqGisyc",
-							"type": "string"
+			"name": "User",
+			"item": [
+				{
+					"name": "Create user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Kalpana Panchal\",\r\n    \"username\": \"Kalpana test4\",\r\n    \"email\": \"kalpana12@gmail.com\",\r\n    \"password\": \"simplePassword1\",\r\n    \"role\": \"user\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/users/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								""
+							]
 						}
-					]
+					},
+					"response": []
 				},
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:3000/users",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"users"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Get user by id",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:3000/users/1",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"users",
-						"1"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Delete user by id",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxLCJuYW1lIjoidmFyc2hpbCB1cGRhdGUxIiwidXNlcm5hbWUiOiJ2YXJzaGlsIHVzZXJuYW1lIHVwZGF0ZTEiLCJlbWFpbCI6InZhcnNoaWxAZ21haWwuY29tIiwicm9sZSI6ImFkbWluIiwicHJvZmlsZUltYWdlIjoiUGljdHVyZTJiMmRiMWUzZS1mOGJkLTQ5NjktYWUwYi1jNTM3N2ExZGI3OTkucG5nIn0sImlhdCI6MTcyMjYxMDMzOSwiZXhwIjoxNzIyNjIwMzM5fQ.x03zeo-CwH4nIguXEfbAI-F2u-cZ98IqOmycnkRY6qY",
-							"type": "string"
+				{
+					"name": "Get user by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/users/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"1"
+							]
 						}
-					]
+					},
+					"response": []
 				},
-				"method": "DELETE",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:3000/users/15",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"users",
-						"15"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Update user by id",
-			"request": {
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"id\": 4,\r\n    \"name\": \"Varshil update again\",\r\n    \"username\": \"varshil test 4 update again\",\r\n    \"email\": \"abc@gmail.com\",\r\n    \"password\": \"dgdfgdfgd\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
+				{
+					"name": "Get all users",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjo1LCJuYW1lIjoiVmFyc2hpbCBEb3NoaSIsInVzZXJuYW1lIjoiVmFyc2hpbCB0ZXN0MSIsImVtYWlsIjoidmFyc2hpbEBnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4ifSwiaWF0IjoxNzIwNjM4ODk5LCJleHAiOjE3MjA2NDg4OTl9.NjGOI-mIjSTDoy73IQGUUDcdjc3QeC1Q9_wFoqGisyc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users"
+							]
 						}
-					}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "http://localhost:3000/users/4",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"users",
-						"4"
-					]
+				{
+					"name": "Update user by id",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 4,\r\n    \"name\": \"Varshil update again\",\r\n    \"username\": \"varshil test 4 update again\",\r\n    \"email\": \"abc@gmail.com\",\r\n    \"password\": \"dgdfgdfgd\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/users/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete user by id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxLCJuYW1lIjoidmFyc2hpbCB1cGRhdGUxIiwidXNlcm5hbWUiOiJ2YXJzaGlsIHVzZXJuYW1lIHVwZGF0ZTEiLCJlbWFpbCI6InZhcnNoaWxAZ21haWwuY29tIiwicm9sZSI6ImFkbWluIiwicHJvZmlsZUltYWdlIjoiUGljdHVyZTJiMmRiMWUzZS1mOGJkLTQ5NjktYWUwYi1jNTM3N2ExZGI3OTkucG5nIn0sImlhdCI6MTcyMjYxMDMzOSwiZXhwIjoxNzIyNjIwMzM5fQ.x03zeo-CwH4nIguXEfbAI-F2u-cZ98IqOmycnkRY6qY",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/users/15",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"15"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "image upload",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxLCJuYW1lIjoidmFyc2hpbCB1cGRhdGUxIiwidXNlcm5hbWUiOiJ2YXJzaGlsIHVzZXJuYW1lIHVwZGF0ZTEiLCJlbWFpbCI6InZhcnNoaWxAZ21haWwuY29tIiwicm9sZSI6InVzZXIiLCJwcm9maWxlSW1hZ2UiOiJQaWN0dXJlMjgzNDJiN2RlLWRmZjgtNGRjOC1iNTQ2LWNiZGI0ZTk3MmExMy5wbmcifSwiaWF0IjoxNzIxMzk1Njg3LCJleHAiOjE3MjE0MDU2ODd9.aCGn3BxboNWYgVZinfJw_hZ-QLzqZnXJEF8EYKciw_M",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/Varshil Doshi/Downloads/Picture2.png"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/users/upload",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"upload"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update user role",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjo1LCJuYW1lIjoiVmFyc2hpbCBEb3NoaSIsInVzZXJuYW1lIjoiVmFyc2hpbCB0ZXN0MSIsImVtYWlsIjoidmFyc2hpbEBnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4ifSwiaWF0IjoxNzIwNjM4ODk5LCJleHAiOjE3MjA2NDg4OTl9.NjGOI-mIjSTDoy73IQGUUDcdjc3QeC1Q9_wFoqGisyc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"role\": \"user\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/users/8/role",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"8",
+								"role"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get profile-image",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/users/profile-image/Picture28342b7de-dff8-4dc8-b546-cbdb4e972a13.png",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"profile-image",
+								"Picture28342b7de-dff8-4dc8-b546-cbdb4e972a13.png"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update user detail with self user",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxLCJuYW1lIjoiVmFyc2hpbCBEb3NoaSIsInVzZXJuYW1lIjoiVmFyc2hpbCB0ZXN0MSIsImVtYWlsIjoidmFyc2hpbEBnbWFpbC5jb20iLCJyb2xlIjoidXNlciIsInByb2ZpbGVJbWFnZSI6IlBpY3R1cmUyODM0MmI3ZGUtZGZmOC00ZGM4LWI1NDYtY2JkYjRlOTcyYTEzLnBuZyJ9LCJpYXQiOjE3MjExODU2NzgsImV4cCI6MTcyMTE5NTY3OH0.XyMzd9Pou_sq0v2skJvkLu-qkf04Gwr2163zWkyMrGM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"varshil update2\",\r\n    \"username\": \"varshil username update2\",\r\n    \"email\": \"nonono\",\r\n    \"password\": \"nonono\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/users/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"1"
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			]
 		},
 		{
 			"name": "Login",
@@ -167,368 +601,6 @@
 					"path": [
 						"users",
 						"login"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "update user role",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjo1LCJuYW1lIjoiVmFyc2hpbCBEb3NoaSIsInVzZXJuYW1lIjoiVmFyc2hpbCB0ZXN0MSIsImVtYWlsIjoidmFyc2hpbEBnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4ifSwiaWF0IjoxNzIwNjM4ODk5LCJleHAiOjE3MjA2NDg4OTl9.NjGOI-mIjSTDoy73IQGUUDcdjc3QeC1Q9_wFoqGisyc",
-							"type": "string"
-						}
-					]
-				},
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"role\": \"user\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:3000/users/8/role",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"users",
-						"8",
-						"role"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "image upload",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxLCJuYW1lIjoidmFyc2hpbCB1cGRhdGUxIiwidXNlcm5hbWUiOiJ2YXJzaGlsIHVzZXJuYW1lIHVwZGF0ZTEiLCJlbWFpbCI6InZhcnNoaWxAZ21haWwuY29tIiwicm9sZSI6InVzZXIiLCJwcm9maWxlSW1hZ2UiOiJQaWN0dXJlMjgzNDJiN2RlLWRmZjgtNGRjOC1iNTQ2LWNiZGI0ZTk3MmExMy5wbmcifSwiaWF0IjoxNzIxMzk1Njg3LCJleHAiOjE3MjE0MDU2ODd9.aCGn3BxboNWYgVZinfJw_hZ-QLzqZnXJEF8EYKciw_M",
-							"type": "string"
-						}
-					]
-				},
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "formdata",
-					"formdata": [
-						{
-							"key": "file",
-							"type": "file",
-							"src": "/C:/Users/Varshil Doshi/Downloads/Picture2.png"
-						}
-					]
-				},
-				"url": {
-					"raw": "http://localhost:3000/users/upload",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"users",
-						"upload"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "get profile-image",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:3000/users/profile-image/Picture28342b7de-dff8-4dc8-b546-cbdb4e972a13.png",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"users",
-						"profile-image",
-						"Picture28342b7de-dff8-4dc8-b546-cbdb4e972a13.png"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "update user detail with self user",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxLCJuYW1lIjoiVmFyc2hpbCBEb3NoaSIsInVzZXJuYW1lIjoiVmFyc2hpbCB0ZXN0MSIsImVtYWlsIjoidmFyc2hpbEBnbWFpbC5jb20iLCJyb2xlIjoidXNlciIsInByb2ZpbGVJbWFnZSI6IlBpY3R1cmUyODM0MmI3ZGUtZGZmOC00ZGM4LWI1NDYtY2JkYjRlOTcyYTEzLnBuZyJ9LCJpYXQiOjE3MjExODU2NzgsImV4cCI6MTcyMTE5NTY3OH0.XyMzd9Pou_sq0v2skJvkLu-qkf04Gwr2163zWkyMrGM",
-							"type": "string"
-						}
-					]
-				},
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"name\": \"varshil update2\",\r\n    \"username\": \"varshil username update2\",\r\n    \"email\": \"nonono\",\r\n    \"password\": \"nonono\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:3000/users/1",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"users",
-						"1"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "create blog",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxLCJuYW1lIjoidmFyc2hpbCB1cGRhdGUxIiwidXNlcm5hbWUiOiJ2YXJzaGlsIHVzZXJuYW1lIHVwZGF0ZTEiLCJlbWFpbCI6InZhcnNoaWxAZ21haWwuY29tIiwicm9sZSI6ImFkbWluIiwicHJvZmlsZUltYWdlIjoiUGljdHVyZTJiMmRiMWUzZS1mOGJkLTQ5NjktYWUwYi1jNTM3N2ExZGI3OTkucG5nIn0sImlhdCI6MTcyMjYyNTA2NSwiZXhwIjoxNzIyNjM1MDY1fQ.Hk-nxGHWeQJ6tCKpxN3LRPrC1AWX9-lYqkxlNKIWb2s",
-							"type": "string"
-						}
-					]
-				},
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"title\": \"test title2\",\r\n    \"description\": \"test description2\",\r\n    \"body\": \"test body2\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:3000/blog-entries",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"blog-entries"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Get blog by user id",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxLCJuYW1lIjoidmFyc2hpbCB1cGRhdGUxIiwidXNlcm5hbWUiOiJ2YXJzaGlsIHVzZXJuYW1lIHVwZGF0ZTEiLCJlbWFpbCI6InZhcnNoaWxAZ21haWwuY29tIiwicm9sZSI6InVzZXIiLCJwcm9maWxlSW1hZ2UiOiJQaWN0dXJlMmIyZGIxZTNlLWY4YmQtNDk2OS1hZTBiLWM1Mzc3YTFkYjc5OS5wbmcifSwiaWF0IjoxNzIyNDkyNzU2LCJleHAiOjE3MjI1MDI3NTZ9.sv6JWif0iq4USwlCMVro3ITmr59EYFZIYkR-keKP_4s",
-							"type": "string"
-						}
-					]
-				},
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:3000/blog-entries?userId=1",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"blog-entries"
-					],
-					"query": [
-						{
-							"key": "userId",
-							"value": "1"
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Findone blog request",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxLCJuYW1lIjoidmFyc2hpbCB1cGRhdGUxIiwidXNlcm5hbWUiOiJ2YXJzaGlsIHVzZXJuYW1lIHVwZGF0ZTEiLCJlbWFpbCI6InZhcnNoaWxAZ21haWwuY29tIiwicm9sZSI6InVzZXIiLCJwcm9maWxlSW1hZ2UiOiJQaWN0dXJlMmIyZGIxZTNlLWY4YmQtNDk2OS1hZTBiLWM1Mzc3YTFkYjc5OS5wbmcifSwiaWF0IjoxNzIyNDkyNzU2LCJleHAiOjE3MjI1MDI3NTZ9.sv6JWif0iq4USwlCMVro3ITmr59EYFZIYkR-keKP_4s",
-							"type": "string"
-						}
-					]
-				},
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:3000/blog-entries/2",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"blog-entries",
-						"2"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "update blog",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxLCJuYW1lIjoidmFyc2hpbCB1cGRhdGUxIiwidXNlcm5hbWUiOiJ2YXJzaGlsIHVzZXJuYW1lIHVwZGF0ZTEiLCJlbWFpbCI6InZhcnNoaWxAZ21haWwuY29tIiwicm9sZSI6ImFkbWluIiwicHJvZmlsZUltYWdlIjoiUGljdHVyZTJiMmRiMWUzZS1mOGJkLTQ5NjktYWUwYi1jNTM3N2ExZGI3OTkucG5nIn0sImlhdCI6MTcyMjYyNTMyOSwiZXhwIjoxNzIyNjM1MzI5fQ.yncLfQdXZRqBu3ddTn27X6R2u2iibJpTNyycsVqQZGM",
-							"type": "string"
-						}
-					]
-				},
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"title\": \"title updated\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:3000/blog-entries/3",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"blog-entries",
-						"3"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "delete blog",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxLCJuYW1lIjoidmFyc2hpbCB1cGRhdGUxIiwidXNlcm5hbWUiOiJ2YXJzaGlsIHVzZXJuYW1lIHVwZGF0ZTEiLCJlbWFpbCI6InZhcnNoaWxAZ21haWwuY29tIiwicm9sZSI6ImFkbWluIiwicHJvZmlsZUltYWdlIjoiUGljdHVyZTJiMmRiMWUzZS1mOGJkLTQ5NjktYWUwYi1jNTM3N2ExZGI3OTkucG5nIn0sImlhdCI6MTcyMjYyNjAwOSwiZXhwIjoxNzIyNjM2MDA5fQ.SVRvZpcIjOrXbrpm2bG5V686Vw_866OtkaRD4mpkOF4",
-							"type": "string"
-						}
-					]
-				},
-				"method": "DELETE",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:3000/blog-entries/3",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"blog-entries",
-						"3"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "get all blogs by pagination",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxLCJuYW1lIjoiVmFyc2hpbCIsInVzZXJuYW1lIjoiVmFyc2hpbCBEb3NoaSIsImVtYWlsIjoidmFyc2hpbEBnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJwcm9maWxlSW1hZ2UiOiJwZXhlbHMta3Jpc2x1Y2FzOTAtMzI2NDUwNDdkMjVjNDZiLTUzZGItNDg0Yy05MGQxLTI3MjE3ZjZmNTVlOC5qcGcifSwiaWF0IjoxNzIyNzc3NjAzLCJleHAiOjE3MjI3ODc2MDN9.HscZOntZGdbfZ1pibueG7KV88tKUNp27mbhtbGk-wkA",
-							"type": "string"
-						}
-					]
-				},
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:3000/blog-entries",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"blog-entries"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "get all blogs by user id",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:3000/blog-entries/user/1",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"blog-entries",
-						"user",
-						"1"
 					]
 				}
 			},

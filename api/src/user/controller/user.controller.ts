@@ -23,7 +23,6 @@ export const storage = {
             cb(null, `${filename}${extension}`)
         }
     })
-
 }
 
 @Controller('users')

@@ -1,9 +1,27 @@
-import { Body, Controller, Delete, Get, Param, Post, Put, Query, Request, UseGuards } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Put, Query, Request, Res, UploadedFile, UseGuards, UseInterceptors } from '@nestjs/common';
 import { BlogService } from '../service/blog.service';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { BlogEntry } from '../model/blog.interface';
 import { JwtAuthGuard } from 'src/auth/guards/jwt-guard';
 import { UserIsAuthorGuard } from '../guards/userIsAuthor-guard';
+import { FileInterceptor } from '@nestjs/platform-express';
+import { diskStorage } from 'multer';
+import { v4 as uuidv4 } from 'uuid';
+import path = require('path');
+import { join } from 'path';
+import { ImageInterface } from '../model/image.interface';
+
+export const storage = {
+    storage: diskStorage({
+        destination: './uploads/blogImages',
+        filename: (req, file, cb) => {
+            const filename: string = path.parse(file.originalname).name.replace(/\s/g, '') + uuidv4();
+            const extension: string = path.parse(file.originalname).ext;
+
+            cb(null, `${filename}${extension}`)
+        }
+    })
+}
 
 @Controller('blog-entries')
 export class BlogController {
@@ -72,5 +90,17 @@ export class BlogController {
     @Delete(':id')
     deleteBlog(@Param('id') id: number): Observable<any> {
         return this.blogService.deleteBlog(id);
+    }
+
+    @UseGuards(JwtAuthGuard)
+    @Post('image/upload')
+    @UseInterceptors(FileInterceptor('file', storage))
+    uploadFile(@UploadedFile() file, @Request() req): Observable<ImageInterface> {
+        return of(file);
+    }
+
+    @Get('image/:imagename')
+    findBlogImage(@Param('imagename') imagename, @Res() res): Observable<Object> {
+        return of(res.sendFile(join(process.cwd(), 'uploads/blogImages/' + imagename)))
     }
 }
