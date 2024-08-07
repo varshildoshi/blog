@@ -15,6 +15,7 @@ import { SharedModule } from '../shared/shared.module';
     CommonModule,
     BlogRoutingModule,
     SharedModule
-  ]
+  ],
+  exports: [BlogListComponent]
 })
 export class BlogModule { }

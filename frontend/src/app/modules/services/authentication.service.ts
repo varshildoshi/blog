@@ -19,7 +19,6 @@ export class AuthenticationService {
   }
 
   handleError(error) {
-    console.log(error);
     let errorMessage = {};
     if (error.error instanceof ErrorEvent) {
       // client-side error

@@ -110,7 +110,6 @@ export class UserProfileComponent implements OnInit {
       map((event) => {
         switch (event.type) {
           case HttpEventType.UploadProgress:
-            console.log('fdgdfgd');
             this.file.progress = Math.round(event.loaded * 100 / event.total);
             break;
           case HttpEventType.Response:
