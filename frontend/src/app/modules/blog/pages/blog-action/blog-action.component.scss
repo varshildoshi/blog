@@ -146,3 +146,83 @@ input[type="file"] {
         }
     }
 }
+
+.header_container {
+
+    display: flex;
+    align-items: center;
+
+    .avatar_container,
+    .author_container {
+        margin-right: 15px;
+    }
+
+    .author_container {
+        display: grid;
+
+        .title {
+            font-size: 24px;
+            font-weight: 500;
+        }
+
+        .subtitle {
+            color: #0000008a;
+            font-size: 16px;
+        }
+
+        span {
+            margin: 5px 0;
+        }
+    }
+
+    .blog-action-avatar {
+        width: 75px;
+        height: 75px;
+        border-radius: 50%;
+        box-shadow: 0 10px 35px rgba(0, 0, 0, .2);
+    }
+}
+
+.img-container-view {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .cs-img-view {
+        height: 500px !important;
+        width: 700px !important;
+        object-fit: fill;
+    }
+}
+
+.description_span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #0000008a;
+    font-size: 14px;
+    margin: 10px 0px;
+}
+
+.inner_html_container {
+    margin: 15px 0px;
+}
+
+.label_body {
+    color: rgba(0, 0, 0, .6);
+    font-size: 14px;
+}
+
+.inValidEditor ::ng-deep .angular-editor-textarea {
+    border: 2px solid #f44336 !important;
+}
+
+.editor_error {
+    font-size: 75%;
+    margin-top: .6666666667em;
+    position: absolute;
+    box-sizing: border-box;
+    width: 100%;
+    overflow: hidden;
+    padding: 0 1em;
+}

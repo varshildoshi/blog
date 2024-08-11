@@ -49,19 +49,19 @@
             </button>
         </div>
         <div class="card_container responsive-grid">
-            <mat-card *ngFor="let blog of (dataSource | async)?.items">
+            <mat-card *ngFor="let blog of (dataSource | async)?.items" class="blog_card"
+                (click)="navigateToAnotherPage('view', blog.id)">
                 <mat-card-header>
                     <mat-card-title>{{blog.title}}</mat-card-title>
                 </mat-card-header>
                 <br />
-                <img *ngIf="blog.headerImage"
-                    src="{{environment.baseURL}}blog-entries/image/{{blog.headerImage}}">
+                <img *ngIf="blog.headerImage" src="{{environment.baseURL}}blog-entries/image/{{blog.headerImage}}">
                 <img *ngIf="!blog.headerImage" src="{{blogDefaultImage}}">
                 <mat-card-content>
-                <br />
-                <p>
-                    {{blog.description}}
-                </p>
+                    <br />
+                    <p>
+                        {{blog.description}}
+                    </p>
                 </mat-card-content>
             </mat-card>
         </div>

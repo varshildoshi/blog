@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
+import { Router } from '@angular/router';
 import { map, Observable, tap } from 'rxjs';
 import { BlogEntriesPageble } from 'src/app/modules/model/blog-entry.interface';
 import { BlogService } from 'src/app/modules/services/blog.service';
@@ -19,7 +20,8 @@ export class BlogListComponent implements OnInit {
   environment = environment;
 
   constructor(
-    private blogService: BlogService
+    private blogService: BlogService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -31,6 +33,10 @@ export class BlogListComponent implements OnInit {
     let limit = event.pageSize;
     page = page + 1;
     this.dataSource = this.blogService.getAllBlogs(page, limit);
+  }
+
+  navigateToAnotherPage(pageType, blogId: number) {
+    this.router.navigateByUrl(`blog/view/${ blogId }`);
   }
 
 }

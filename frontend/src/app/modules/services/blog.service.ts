@@ -31,4 +31,8 @@ export class BlogService {
       observe: 'events'
     });
   }
+
+  getBlogByBlogId(blogId: number): Observable<BlogEntry> {
+    return this.http.get<BlogEntry>(`${environment.baseURL}blog-entries/${blogId}`);
+  }
 }

@@ -1,8 +1,4 @@
 <div class="user-profile-cmp">
-    <mat-card-header>
-        <mat-card-title>Create Blog</mat-card-title>
-    </mat-card-header>
-    <mat-divider inset></mat-divider>
     <mat-card-content class="card_content">
         <div fxLayout="row" fxLayoutAlign="center center" *ngIf="loading">
             <mat-icon>
@@ -10,7 +6,8 @@
             </mat-icon>
         </div>
 
-        <div class="div-container" *ngIf="!isPreview">
+        <!-- CREATE POST PAGE -->
+        <div class="div-container" *ngIf="isCreatPostSection && !isPreviewOn">
             <div class="container_one">
                 <div class="img-container">
                     <img *ngIf="blogForm.controls['headerImage'].value"
@@ -56,7 +53,7 @@
                             </p>
                         </div>
 
-                        <div class="cs-container">
+                        <!-- <div class="cs-container">
                             <p>
                                 <mat-form-field class="example-full-width" appearance="outline">
                                     <mat-label>Body</mat-label>
@@ -66,16 +63,27 @@
                                         enter blog body</mat-error>
                                 </mat-form-field>
                             </p>
-                        </div>
+                        </div> -->
 
-                        <angular-editor formControlName="htmlContent" [config]="editorConfig"></angular-editor>
+                        <div class="cs-container">
+                            <p>
+                                <mat-label class="label_body">Body</mat-label>
+                                <angular-editor formControlName="body" [config]="editorConfig"
+                                    [ngClass]="(blogForm.controls['body'].touched && blogForm.controls['body'].errors && blogForm.controls['body'].errors.required) ? 'inValidEditor' : ''">
+                                </angular-editor>
+                                <mat-error class="editor_error"
+                                    *ngIf="blogForm.controls['body'].touched && blogForm.controls['body'].errors && blogForm.controls['body'].errors.required">Please
+                                    enter blog body</mat-error>
+                            </p>
+                        </div>
 
                     </form>
                 </div>
             </div>
         </div>
 
-        <div class="div-container-preview" *ngIf="isPreview">
+        <!-- PREVIEW POST PAGE-->
+        <div class="div-container-preview" *ngIf="isPreviewOn">
             <h1 class="label-title-preview">{{blogForm.controls['title'].value}}</h1>
             <div class="container_one-preview">
                 <div class="img-container-preview">
@@ -90,18 +98,16 @@
             <div class="container_two-preview">
                 <div class="sub_container-preview">
                     <h3 class="label-description-preview">{{blogForm.controls['description'].value}}</h3>
-                    <h4 class="label-body-preview">{{blogForm.controls['body'].value}}</h4>
-                    <div>
-                        {{blogForm.controls['htmlContent'].value}}
-                    </div>
+                    <!-- <h4 class="label-body-preview">{{blogForm.controls['body'].value}}</h4> -->
+                    <div [innerHTML]="blogForm.controls['body'].value"></div>
                 </div>
             </div>
         </div>
 
+        <div fxLayout="row" fxLayoutAlign="right right" class="action-div"
+            *ngIf="isPreviewPostSection && isCreatPostSection">
 
-        <div fxLayout="row" fxLayoutAlign="right right" class="action-div">
-
-            <mat-slide-toggle [(ngModel)]="isPreview" style="margin-right: 15px;">Preview
+            <mat-slide-toggle [(ngModel)]="isPreviewOn" style="margin-right: 15px;">Preview
                 Post
             </mat-slide-toggle>
 
@@ -112,6 +118,48 @@
             </button>
 
         </div>
+
+        <!-- VIEW POST PAGE -->
+        <div *ngIf="isViewPostSection">
+            <div *ngIf="(blogEntry$ | async) as blogEntry">
+                <!-- <mat-card> -->
+                <mat-card-header>
+                    <mat-card-title>
+                        {{blogEntry.title}}
+                    </mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <div class="header_container">
+                        <div class="avatar_container">
+                            <img class="blog-action-avatar mat-elevation-z8" *ngIf="blogEntry.author.profileImage"
+                                src="{{environment.baseURL}}users/profile-image/{{blogEntry.author.profileImage}}"
+                                alt="user">
+                            <img class="blog-action-avatar mat-elevation-z8" *ngIf="!blogEntry.author.profileImage"
+                                src="{{defaultProfile}}" alt="user">
+                        </div>
+                        <div class="author_container">
+                            <span class="title">{{blogEntry.author.username}}</span>
+                            <span class="subtitle">{{blogEntry.author.email}}</span>
+                        </div>
+                    </div>
+                    <div class="img-container-view">
+                        <img *ngIf="blogEntry.headerImage"
+                            src="{{environment.baseURL}}blog-entries/image/{{blogEntry.headerImage}}" alt=""
+                            class="cs-img-view">
+                        <img *ngIf="!blogEntry.headerImage" src="{{blogDefaultImage}}" alt="" class="cs-img-view">
+
+                    </div>
+                    <span class="description_span">{{blogEntry.description}}</span>
+
+                    <div class="inner_html_container">
+                        <div [innerHTML]="blogEntry.body"></div>
+                    </div>
+
+                </mat-card-content>
+                <!-- </mat-card> -->
+            </div>
+        </div>
+
     </mat-card-content>
 </div>
 <!-- <div class="ds-container">

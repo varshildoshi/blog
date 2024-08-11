@@ -5,7 +5,8 @@ import { BlogActionComponent } from './pages/blog-action/blog-action.component';
 
 const routes: Routes = [
   { path: '', component: BlogListComponent },
-  { path: 'add', component: BlogActionComponent }
+  { path: 'add', component: BlogActionComponent, data: { pageType: 'add' } },
+  { path: 'view/:id', component: BlogActionComponent, data: { pageType: 'view' } },
 ];
 
 @NgModule({

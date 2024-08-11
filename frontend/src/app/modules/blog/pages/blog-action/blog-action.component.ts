@@ -2,9 +2,10 @@ import { HttpErrorResponse, HttpEventType } from '@angular/common/http';
 import { ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
-import { catchError, map, of } from 'rxjs';
+import { catchError, map, Observable, of, tap } from 'rxjs';
+import { BlogEntry } from 'src/app/modules/model/blog-entry.interface';
 import { BlogService } from 'src/app/modules/services/blog.service';
 import { environment } from 'src/environments/environment';
 
@@ -27,21 +28,31 @@ export class BlogActionComponent implements OnInit {
     inProgress: false,
     progress: 0
   }
+
+  defaultProfile = '../../../../../assets/images/blank-profile-picture.png';
   blogDefaultImage = '../../../../../assets/images/logo/logo-black-white.png';
   blogForm: FormGroup;
   loading = false;
   errorMessage: any;
   errors: any = [];
-
   environment = environment;
-  blogPreview = false;
-  isPreview = false;
+
+  isCreatPostSection = false;
+  isPreviewPostSection = false;
+  isViewPostSection = false;
+  pageType = '';
+
+  isPreviewOn = false;
+
+  blogEntry$: Observable<BlogEntry>;
+  blogId: number = 0;
+
 
   editorConfig: AngularEditorConfig = {
     editable: true,
     spellcheck: true,
-    height: 'auto',
-    minHeight: '0',
+    height: '15rem',
+    minHeight: '5rem',
     maxHeight: 'auto',
     width: 'auto',
     minWidth: '0',
@@ -74,15 +85,25 @@ export class BlogActionComponent implements OnInit {
       },
     ],
     toolbarHiddenButtons: [
+      [
+        'indent',
+        'outdent',
+        'customClasses',
+        'insertImage',
+        'insertVideo',
+        'toggleEditorMode'
+      ]
     ]
   };
+
 
   constructor(
     private router: Router,
     private cdr: ChangeDetectorRef,
     public fb: FormBuilder,
     private blogService: BlogService,
-    private _snackBar: MatSnackBar
+    private _snackBar: MatSnackBar,
+    private activatedRoute: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
@@ -93,8 +114,34 @@ export class BlogActionComponent implements OnInit {
       description: ['', Validators.required],
       body: ['', Validators.required],
       headerImage: ['', Validators.required],
-      htmlContent: ['']
     });
+
+
+    this.activatedRoute.data.pipe(
+      map((type) => this.pageType = type.pageType)
+    ).subscribe();
+    this.blogId = this.activatedRoute.snapshot.params['id'];
+
+    this.pageSetup();
+  }
+
+  pageSetup() {
+    if (this.pageType === 'view') {
+      this.isViewPostSection = true;
+      this.getBlogByBlogId();
+    } else if (this.pageType === 'add') {
+      this.isCreatPostSection = true;
+      this.isPreviewPostSection = true;
+    }
+  }
+
+  getBlogByBlogId() {
+    this.blogEntry$ = this.blogService.getBlogByBlogId(this.blogId).pipe(
+      map((blogEntry: BlogEntry) => {
+        console.log(blogEntry);
+        return blogEntry;
+      })
+    );
   }
 
   onClick() {
@@ -135,10 +182,6 @@ export class BlogActionComponent implements OnInit {
         }
       });
   }
-
-  // viewPreview() {
-  //   this.blogPreview = !this.blogPreview;
-  // }
 
   createPost() {
     this.blogService.createBlog(this.blogForm.value).subscribe(response => {
