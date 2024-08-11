@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { BreakpointObserver } from '@angular/cdk/layout';
+import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
+import { MatSidenav } from '@angular/material/sidenav';
 import { Router } from '@angular/router';
 import { map } from 'rxjs';
 import { UserService } from 'src/app/modules/services/user.service';
@@ -15,16 +17,32 @@ export class BaseComponent implements OnInit {
   currentUser: any;
   userId;
   defaultProfile = '../../../../../assets/images/blank-profile-picture.png';
+  @ViewChild(MatSidenav) sidenav: MatSidenav;
 
   constructor(
     private router: Router,
     private userService: UserService,
+    private observer: BreakpointObserver,
+    private cdr: ChangeDetectorRef
   ) { }
 
   ngOnInit(): void {
     let user = getUserDetails(localStorage.getItem('access_token'))['user'];
     this.userId = user.id;
     this.getUserById();
+  }
+
+  ngAfterViewInit() {
+    this.observer.observe(['(max-width: 800px)']).subscribe((res) => {
+      if (res.matches) {
+        this.sidenav.mode = 'over';
+        this.sidenav.close();
+      } else {
+        this.sidenav.mode = 'side';
+        this.sidenav.open();
+      }
+      this.cdr.detectChanges();
+    });
   }
 
   getUserById() {
@@ -57,5 +75,4 @@ export class BaseComponent implements OnInit {
     localStorage.clear();
     this.router.navigate(['/auth/login']);
   }
-
 }

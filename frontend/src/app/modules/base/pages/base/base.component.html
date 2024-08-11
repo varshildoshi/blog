@@ -1,4 +1,4 @@
-<mat-toolbar color="primary">
+<!-- <mat-toolbar color="primary">
     <mat-toolbar-row>
         <span>BlogHub</span>
         <span class="toolbar-spacer"></span>
@@ -37,4 +37,65 @@
         </mat-menu>
     </mat-toolbar-row>
 </mat-toolbar>
-<router-outlet></router-outlet>
+<router-outlet></router-outlet> -->
+
+<mat-toolbar>
+    <button mat-icon-button *ngIf="sidenav.mode == 'over'" (click)="sidenav.toggle()">
+        <mat-icon>{{!sidenav.opened ? 'menu' : 'close'}}</mat-icon>
+    </button>
+    BlogHub
+    <span class="toolbar-spacer"></span>
+    <button mat-icon-button class="example-icon" [matMenuTriggerFor]="menu"
+        aria-label="Example icon-button with menu icon">
+        <mat-icon>account_circle</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+        <button mat-menu-item routerLink="/user-profile" routerLinkActive="routerActive" [routerLinkActiveOptions]="{exact:
+            true}">
+            <mat-icon>face</mat-icon>
+            <span>My Profile</span>
+        </button>
+        <button mat-menu-item (click)="logout()">
+            <mat-icon>logout</mat-icon>
+            <span>Logout</span>
+        </button>
+    </mat-menu>
+</mat-toolbar>
+<mat-sidenav-container>
+    <mat-sidenav #sidenav="matSidenav">
+
+        <img class="avatar mat-elevation-z8" [src]="currentUser?.profilePic" />
+
+        <h4 class="name">{{currentUser?.name}}</h4>
+        <p class="role">{{currentUser?.role | uppercase}}</p>
+
+        <mat-divider></mat-divider>
+
+        <button mat-button class="menu-button" routerLink="/dashboard" routerLinkActive="routerActive"
+            [routerLinkActiveOptions]="{exact:
+            true}">
+            <mat-icon>dashboard</mat-icon>
+            <span>Dashboard</span>
+        </button>
+        <button mat-button class="menu-button" routerLink="/users" routerLinkActive="routerActive"
+            [routerLinkActiveOptions]="{exact:
+            true}">
+            <mat-icon>group</mat-icon>
+            <span>Users</span>
+        </button>
+        <button mat-button class="menu-button" routerLink="/blog" routerLinkActive="routerActive"
+            [routerLinkActiveOptions]="{exact:
+            true}">
+            <mat-icon>group</mat-icon>
+            <span>Blogs</span>
+        </button>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <mat-card class="side_content mat-elevation-z8">
+            <router-outlet></router-outlet>
+        </mat-card>
+        <!-- <div class="side_content mat-elevation-z8">
+            <router-outlet></router-outlet>
+        </div> -->
+    </mat-sidenav-content>
+</mat-sidenav-container>

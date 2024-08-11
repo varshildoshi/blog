@@ -5,6 +5,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 // FLEX LAYOUT MODULE //
 import { FlexLayoutModule } from '@angular/flex-layout';
 
+import { AngularEditorModule } from '@kolkov/angular-editor';
+
 // ANGULAR MATERIAL MODULES //
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -25,6 +27,10 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatChipsModule } from '@angular/material/chips';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
+import { MatDividerModule } from '@angular/material/divider';
 
 @NgModule({
   declarations: [
@@ -34,6 +40,7 @@ import { MatChipsModule } from '@angular/material/chips';
     FormsModule, ReactiveFormsModule,
     // FLEX LAYOUT MODULE //
     FlexLayoutModule,
+    AngularEditorModule,
     // ANGULAR MATERIAL MODULES //
     MatButtonModule,
     MatToolbarModule,
@@ -54,9 +61,14 @@ import { MatChipsModule } from '@angular/material/chips';
     MatSnackBarModule,
     MatProgressBarModule,
     MatChipsModule,
+    MatSlideToggleModule,
+    MatSidenavModule,
+    MatListModule,
+    MatDividerModule
   ],
   exports: [
     FlexLayoutModule,
+    AngularEditorModule,
     FormsModule, ReactiveFormsModule,
     MatButtonModule,
     MatToolbarModule,
@@ -77,6 +89,10 @@ import { MatChipsModule } from '@angular/material/chips';
     MatSnackBarModule,
     MatProgressBarModule,
     MatChipsModule,
+    MatSlideToggleModule,
+    MatSidenavModule,
+    MatListModule,
+    MatDividerModule
   ],
   providers: [
   ]

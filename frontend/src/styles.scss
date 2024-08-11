@@ -26,3 +26,15 @@ body {
     background-size: cover;
     background-attachment: fixed;
 }
+
+.user-cmp, .blog-cmp, .user-profile-cmp {
+    .mat-card-header {
+        .mat-card-header-text {
+            margin: 0 !important;
+        }
+    }
+    
+    .mat-card-content{
+        margin-bottom: 0px !important;
+    }
+}

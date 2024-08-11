@@ -5,7 +5,8 @@
         </mat-card-header>
         <form class="example-form" [formGroup]="loginForm" novalidate autocomplete="off" (ngSubmit)="onSubmit()">
             <mat-card-content>
-                <mat-form-field class="example-full-width">
+                <mat-form-field class="example-full-width" appearance="outline">
+                    <mat-label>Email</mat-label>
                     <input matInput placeholder="Email" formControlName="email">
                     <mat-error
                         *ngIf="loginForm.controls['email'].errors && loginForm.controls['email'].errors.required">Please
@@ -14,7 +15,8 @@
                         *ngIf="loginForm.controls['email'].errors && loginForm.controls['email'].errors.pattern">Please
                         enter valid email</mat-error>
                 </mat-form-field>
-                <mat-form-field class="example-full-width">
+                <mat-form-field class="example-full-width" appearance="outline">
+                    <mat-label>Password</mat-label>
                     <input matInput placeholder="Password" formControlName="password"
                         [type]="hide ? 'password' : 'text'">
                     <mat-icon style="cursor: pointer" (click)="hide = !hide" matSuffix class="secondary-text">{{ hide ?

@@ -48,6 +48,7 @@ export class BlogController {
     //     }
     // }
 
+    @UseGuards(JwtAuthGuard)
     @Get('')
     index(
         @Query('page') page: number = 1,
@@ -61,6 +62,7 @@ export class BlogController {
         })
     }
 
+    @UseGuards(JwtAuthGuard)
     @Get('user/:user')
     indexByUser(
         @Query('page') page: number = 1,
@@ -75,6 +77,7 @@ export class BlogController {
         }, Number(userId))
     }
 
+    @UseGuards(JwtAuthGuard)
     @Get(':id')
     findOne(@Param('id') id: number): Observable<BlogEntry> {
         return this.blogService.findOneBlog(id);
@@ -99,6 +102,7 @@ export class BlogController {
         return of(file);
     }
 
+    // @UseGuards(JwtAuthGuard)
     @Get('image/:imagename')
     findBlogImage(@Param('imagename') imagename, @Res() res): Observable<Object> {
         return of(res.sendFile(join(process.cwd(), 'uploads/blogImages/' + imagename)))

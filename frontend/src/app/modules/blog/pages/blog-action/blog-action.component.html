@@ -1,0 +1,226 @@
+<div class="user-profile-cmp">
+    <mat-card-header>
+        <mat-card-title>Create Blog</mat-card-title>
+    </mat-card-header>
+    <mat-divider inset></mat-divider>
+    <mat-card-content class="card_content">
+        <div fxLayout="row" fxLayoutAlign="center center" *ngIf="loading">
+            <mat-icon>
+                <mat-spinner color="primary"></mat-spinner>
+            </mat-icon>
+        </div>
+
+        <div class="div-container" *ngIf="!isPreview">
+            <div class="container_one">
+                <div class="img-container">
+                    <img *ngIf="blogForm.controls['headerImage'].value"
+                        src="{{environment.baseURL}}blog-entries/image/{{blogForm.controls['headerImage'].value}}"
+                        alt="" class="cs-img">
+                    <img *ngIf="!blogForm.controls['headerImage'].value" src="{{blogDefaultImage}}" alt=""
+                        class="cs-img">
+
+                </div>
+                <div class="progress_container">
+                    <mat-progress-bar [value]="file.progress"></mat-progress-bar>
+                </div>
+                <div style="cursor: pointer;margin-top:7%;">
+                    <button mat-stroked-button color="primary" (click)="onClick()">Edit Image</button>
+                    <input type="file" #fileUpload />
+                </div>
+            </div>
+            <div class="container_two">
+                <div class="sub_container">
+                    <form [formGroup]="blogForm" novalidate autocomplete="off" class="cs_form">
+                        <div class="cs-container">
+                            <p>
+                                <mat-form-field class="example-full-width" appearance="outline">
+                                    <mat-label>Title</mat-label>
+                                    <input matInput placeholder="Title" formControlName="title">
+                                    <mat-error
+                                        *ngIf="blogForm.controls['title'].errors && blogForm.controls['title'].errors.required">Please
+                                        enter blog title</mat-error>
+                                </mat-form-field>
+                            </p>
+                        </div>
+
+                        <div class="cs-container">
+                            <p>
+                                <mat-form-field class="example-full-width" appearance="outline">
+                                    <mat-label>Description</mat-label>
+                                    <textarea matInput placeholder="Description" formControlName="description"
+                                        rows="5"></textarea>
+                                    <mat-error
+                                        *ngIf="blogForm.controls['description'].errors && blogForm.controls['description'].errors.required">Please
+                                        enter blog description</mat-error>
+                                </mat-form-field>
+                            </p>
+                        </div>
+
+                        <div class="cs-container">
+                            <p>
+                                <mat-form-field class="example-full-width" appearance="outline">
+                                    <mat-label>Body</mat-label>
+                                    <textarea matInput placeholder="Body" formControlName="body" rows="20"></textarea>
+                                    <mat-error
+                                        *ngIf="blogForm.controls['body'].errors && blogForm.controls['body'].errors.required">Please
+                                        enter blog body</mat-error>
+                                </mat-form-field>
+                            </p>
+                        </div>
+
+                        <angular-editor formControlName="htmlContent" [config]="editorConfig"></angular-editor>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="div-container-preview" *ngIf="isPreview">
+            <h1 class="label-title-preview">{{blogForm.controls['title'].value}}</h1>
+            <div class="container_one-preview">
+                <div class="img-container-preview">
+                    <img *ngIf="blogForm.controls['headerImage'].value"
+                        src="{{environment.baseURL}}blog-entries/image/{{blogForm.controls['headerImage'].value}}"
+                        alt="" class="cs-img-preview">
+                    <img *ngIf="!blogForm.controls['headerImage'].value" src="{{blogDefaultImage}}" alt=""
+                        class="cs-img-preview">
+
+                </div>
+            </div>
+            <div class="container_two-preview">
+                <div class="sub_container-preview">
+                    <h3 class="label-description-preview">{{blogForm.controls['description'].value}}</h3>
+                    <h4 class="label-body-preview">{{blogForm.controls['body'].value}}</h4>
+                    <div>
+                        {{blogForm.controls['htmlContent'].value}}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div fxLayout="row" fxLayoutAlign="right right" class="action-div">
+
+            <mat-slide-toggle [(ngModel)]="isPreview" style="margin-right: 15px;">Preview
+                Post
+            </mat-slide-toggle>
+
+            <button mat-raised-button color="primary" style="margin-right: 10px;" (click)="createPost()">Create Post
+                <mat-icon *ngIf="loading">
+                    <mat-spinner color="accent" diameter="20"></mat-spinner>
+                </mat-icon>
+            </button>
+
+        </div>
+    </mat-card-content>
+</div>
+<!-- <div class="ds-container">
+    <mat-card>
+        <mat-card-header class="cs-card-header">
+            <mat-card-title>Create Blog</mat-card-title>
+        </mat-card-header>
+        <div fxLayout="row" fxLayoutAlign="center center" *ngIf="loading">
+            <mat-icon>
+                <mat-spinner color="primary"></mat-spinner>
+            </mat-icon>
+        </div>
+
+        <div class="div-container" *ngIf="!isPreview">
+            <div class="container_one">
+                <div class="img-container">
+                    <img *ngIf="blogForm.controls['headerImage'].value"
+                        src="{{environment.baseURL}}blog-entries/image/{{blogForm.controls['headerImage'].value}}"
+                        alt="" class="cs-img">
+                    <img *ngIf="!blogForm.controls['headerImage'].value" src="{{blogDefaultImage}}" alt=""
+                        class="cs-img">
+
+                </div>
+                <div class="progress_container">
+                    <mat-progress-bar [value]="file.progress"></mat-progress-bar>
+                </div>
+                <div style="cursor: pointer;margin-top:7%;">
+                    <button mat-stroked-button color="primary" (click)="onClick()">Edit Image</button>
+                    <input type="file" #fileUpload />
+                </div>
+            </div>
+            <div class="container_two">
+                <div class="sub_container">
+                    <form [formGroup]="blogForm" novalidate autocomplete="off" class="cs_form">
+                        <div class="cs-container">
+                            <p>
+                                <mat-form-field class="example-full-width" appearance="outline">
+                                    <mat-label>Title</mat-label>
+                                    <input matInput placeholder="Title" formControlName="title">
+                                    <mat-error
+                                        *ngIf="blogForm.controls['title'].errors && blogForm.controls['title'].errors.required">Please
+                                        enter blog title</mat-error>
+                                </mat-form-field>
+                            </p>
+                        </div>
+
+                        <div class="cs-container">
+                            <p>
+                                <mat-form-field class="example-full-width" appearance="outline">
+                                    <mat-label>Description</mat-label>
+                                    <textarea matInput placeholder="Description" formControlName="description"
+                                        rows="5"></textarea>
+                                    <mat-error
+                                        *ngIf="blogForm.controls['description'].errors && blogForm.controls['description'].errors.required">Please
+                                        enter blog description</mat-error>
+                                </mat-form-field>
+                            </p>
+                        </div>
+
+                        <div class="cs-container">
+                            <p>
+                                <mat-form-field class="example-full-width" appearance="outline">
+                                    <mat-label>Body</mat-label>
+                                    <textarea matInput placeholder="Body" formControlName="body" rows="20"></textarea>
+                                    <mat-error
+                                        *ngIf="blogForm.controls['body'].errors && blogForm.controls['body'].errors.required">Please
+                                        enter blog body</mat-error>
+                                </mat-form-field>
+                            </p>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="div-container-preview" *ngIf="isPreview">
+            <h1 class="label-title-preview">{{blogForm.controls['title'].value}}</h1>
+            <div class="container_one-preview">
+                <div class="img-container-preview">
+                    <img *ngIf="blogForm.controls['headerImage'].value"
+                        src="{{environment.baseURL}}blog-entries/image/{{blogForm.controls['headerImage'].value}}"
+                        alt="" class="cs-img-preview">
+                    <img *ngIf="!blogForm.controls['headerImage'].value" src="{{blogDefaultImage}}" alt=""
+                        class="cs-img-preview">
+
+                </div>
+            </div>
+            <div class="container_two-preview">
+                <div class="sub_container-preview">
+                    <h3 class="label-description-preview">{{blogForm.controls['description'].value}}</h3>
+                    <h4 class="label-body-preview">{{blogForm.controls['body'].value}}</h4>
+                </div>
+            </div>
+        </div>
+
+
+        <div fxLayout="row" fxLayoutAlign="right right" class="action-div">
+
+            <mat-slide-toggle [(ngModel)]="isPreview" style="margin-right: 15px;">Preview
+                Post
+            </mat-slide-toggle>
+
+            <button mat-raised-button color="primary" style="margin-right: 10px;" (click)="createPost()">Create Post
+                <mat-icon *ngIf="loading">
+                    <mat-spinner color="accent" diameter="20"></mat-spinner>
+                </mat-icon>
+            </button>
+
+        </div>
+    </mat-card>
+</div> -->

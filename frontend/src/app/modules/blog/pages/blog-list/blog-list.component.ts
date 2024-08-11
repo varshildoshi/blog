@@ -16,6 +16,7 @@ export class BlogListComponent implements OnInit {
   gridColumns = 4;
   dataSource: Observable<BlogEntriesPageble>;
   pageEvent: PageEvent;
+  environment = environment;
 
   constructor(
     private blogService: BlogService

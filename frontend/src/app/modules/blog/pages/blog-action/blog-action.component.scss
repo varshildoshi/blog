@@ -1,5 +1,5 @@
 .ds-container {
-    width: 50%;
+    width: 90%;
     margin: auto;
     margin-top: 30px !important;
 
@@ -22,6 +22,7 @@
 
 .action-div {
     justify-content: flex-end !important;
+    align-items: center !important;
 }
 
 .example-form {
@@ -37,7 +38,8 @@
 .div-container {
     display: flex;
     align-content: center;
-    align-items: stretch;
+    justify-content: space-between;
+    flex-direction: row;
     margin: 30px 0px;
 
     .container_one {
@@ -56,8 +58,8 @@
             padding: 5px;
 
             .cs-img {
-                height: 140px;
-                width: 140px;
+                height: 450px !important;
+                width: 700px !important;
                 border-radius: 10px;
             }
         }
@@ -70,11 +72,11 @@
 
     .container_two {
         margin: 0% 1%;
-        width: 50%;
+        width: 100%;
 
         .sub_container {
             .cs_form {
-                width: 60%;
+                width: 100%;
             }
         }
     }
@@ -105,4 +107,42 @@ input[type="file"] {
     cursor: pointer;
     width: 100px;
     height: 35px;
+}
+
+.div-container-preview {
+    border: 2px dashed #8c8c8c !important;
+    padding: 25px !important;
+    margin-bottom: 25px !important;
+    margin: 30px 0px;
+
+    .label-title-preview {
+        font-size: 34px;
+        font-weight: 400;
+    }
+
+    .container_one-preview {
+        display: flex;
+        justify-content: center;
+
+        .img-container-preview {
+            .cs-img-preview {
+                height: 500px !important;
+                width: 700px !important;
+            }
+        }
+    }
+
+    .container_two-preview {
+        .sub_container-preview {
+            .label-description-preview {
+                font-size: 18px;
+                color: #0000008a !important;
+            }
+
+            .label-body-preview {
+                font-size: 16px;
+                line-height: 28px;
+            }
+        }
+    }
 }

@@ -36,10 +36,10 @@ export class TokenInterceptorService implements HttpInterceptor {
     switch (err.status) {
       case ERROR_CODE.ERROR_401:
         localStorage.clear();
-        this.openSnackBar('Please login. Session is expired..');
         this.router.navigate(['/auth/login']);
         break;
     }
+    this.openSnackBar(`${err.error.message}! Please login. Session is expired..`);
     console.log('Error', err);
     throw err;
   }

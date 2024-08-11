@@ -12,7 +12,7 @@ import { BlogService } from './services/blog.service';
 
 @NgModule({
   declarations: [
-    BaseComponent
+    BaseComponent,
   ],
   imports: [
     CommonModule,

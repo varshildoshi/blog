@@ -1,26 +1,73 @@
-<div class="content">
-    <div fxLayout="row wrap" fxLayoutGap="16px grid">
-        <div [fxFlex]="(100/gridColumns) + '%'" fxFlex.xs="100%" fxFlex.sm="33%"
-            *ngFor="let blog of (dataSource | async)?.items">
-            <mat-card class="mat-elevation-z4">
+<!-- <div class="blog-cmp">
+    <mat-card-header>
+        <mat-card-title>Blogs</mat-card-title>
+    </mat-card-header>
+    <mat-divider inset></mat-divider>
+    <mat-card-content class="card_content">
+        <div fxLayout="row" fxLayoutAlign="end center" class="btn-container">
+            <button mat-raised-button color="primary" routerLink="/blog/add">
+                <mat-icon>add_comment</mat-icon> Add Blog
+            </button>
+        </div>
+        <div>
+            <div fxLayout="row wrap" fxLayoutGap="16px grid">
+                <div [fxFlex]="(100/gridColumns) + '%'" fxFlex.xs="100%" fxFlex.sm="33%"
+                    *ngFor="let blog of (dataSource | async)?.items">
+                    <mat-card class="mat-elevation-z4" class="cs_card" fxFlex>
+                        <img mat-card-image *ngIf="blog.headerImage"
+                            src="{{environment.baseURL}}blog-entries/image/{{blog.headerImage}}">
+                        <img mat-card-image *ngIf="!blog.headerImage" src="{{blogDefaultImage}}">
+                        <mat-card-content>
+                            <h3>
+                                {{blog.title}}
+                            </h3>
+                        </mat-card-content>
+                        <mat-card-actions>
+                            <button mat-button>LIKE</button>
+                            <button mat-button>SHARE</button>
+                        </mat-card-actions>
+                    </mat-card>
+                </div>
+            </div>
+        </div>
+        <mat-paginator [length]="(dataSource | async)?.meta.totalItems"
+            [pageSize]="(dataSource | async)?.meta.itemsPerPage" [pageSizeOptions]="[5,10,25,100]"
+            (page)="pageEvent = $event; onPaginateChange($event)" aria-label="Select page" showFirstLastButtons>
+        </mat-paginator>
+    </mat-card-content>
+</div> -->
+
+<div class="blog-cmp">
+    <mat-card-header>
+        <mat-card-title>Blogs</mat-card-title>
+    </mat-card-header>
+    <mat-divider inset></mat-divider>
+    <mat-card-content class="card_content">
+        <div fxLayout="row" fxLayoutAlign="end center" class="btn-container">
+            <button mat-raised-button color="primary" routerLink="/blog/add">
+                <mat-icon>add_comment</mat-icon> Add Blog
+            </button>
+        </div>
+        <div class="card_container responsive-grid">
+            <mat-card *ngFor="let blog of (dataSource | async)?.items">
                 <mat-card-header>
-                    <mat-card-title>Mountains</mat-card-title>
+                    <mat-card-title>{{blog.title}}</mat-card-title>
                 </mat-card-header>
-                <img mat-card-image [src]="blog.headerImage ? blog.headerImage : blogDefaultImage">
+                <br />
+                <img *ngIf="blog.headerImage"
+                    src="{{environment.baseURL}}blog-entries/image/{{blog.headerImage}}">
+                <img *ngIf="!blog.headerImage" src="{{blogDefaultImage}}">
                 <mat-card-content>
-                    <p>
-                        {{blog.title}}
-                    </p>
+                <br />
+                <p>
+                    {{blog.description}}
+                </p>
                 </mat-card-content>
-                <mat-card-actions>
-                    <button mat-button>LIKE</button>
-                    <button mat-button>SHARE</button>
-                </mat-card-actions>
             </mat-card>
         </div>
         <mat-paginator [length]="(dataSource | async)?.meta.totalItems"
             [pageSize]="(dataSource | async)?.meta.itemsPerPage" [pageSizeOptions]="[5,10,25,100]"
             (page)="pageEvent = $event; onPaginateChange($event)" aria-label="Select page" showFirstLastButtons>
         </mat-paginator>
-    </div>
+    </mat-card-content>
 </div>

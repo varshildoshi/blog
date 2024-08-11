@@ -30,6 +30,7 @@ export class UserController {
 
     constructor(private userService: UserService) { }
 
+    @UseGuards(JwtAuthGuard)
     @Post()
     create(@Body() user: UserInterface): Observable<UserInterface | Object> {
         return this.userService.create(user).pipe(
@@ -47,6 +48,7 @@ export class UserController {
         )
     }
 
+    @UseGuards(JwtAuthGuard)
     @Get(':id')
     findOne(@Param() params): Observable<UserInterface> {
         return this.userService.findOne(params.id);
@@ -57,6 +59,7 @@ export class UserController {
     //     return this.userService.findAll();
     // }
 
+    @UseGuards(JwtAuthGuard)
     @Get()
     index(
         @Query('page') page: number = 1,
@@ -108,6 +111,7 @@ export class UserController {
         )
     }
 
+    // @UseGuards(JwtAuthGuard)
     @Get('profile-image/:imagename')
     findProfileImage(@Param('imagename') imagename, @Res() res): Observable<Object> {
         return of(res.sendFile(join(process.cwd(), 'uploads/profileimages/' + imagename)))

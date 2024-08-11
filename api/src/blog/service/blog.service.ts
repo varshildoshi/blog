@@ -17,7 +17,7 @@ export class BlogService {
         private userService: UserService
     ) { }
 
-    create(user: any, blogEntry: BlogEntry): Observable<BlogEntry> {
+    create(user: UserInterface, blogEntry: BlogEntry): Observable<BlogEntry> {
         blogEntry.author = user;
         return this.generateSlug(blogEntry.title).pipe(
             switchMap((slug: string) => {

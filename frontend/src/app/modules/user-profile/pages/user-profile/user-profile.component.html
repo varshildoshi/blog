@@ -1,18 +1,18 @@
-<div class="ds-container">
-    <mat-card>
-        <mat-card-header class="cs-card-header">
-            <mat-card-title>Profile</mat-card-title>
-        </mat-card-header>
+<div class="user-profile-cmp">
+    <mat-card-header>
+        <mat-card-title>Profile</mat-card-title>
+    </mat-card-header>
+    <mat-divider inset></mat-divider>
+    <mat-card-content class="card_content">
         <div fxLayout="row" fxLayoutAlign="center center" *ngIf="loading">
             <mat-icon>
                 <mat-spinner color="primary"></mat-spinner>
             </mat-icon>
         </div>
-
         <div class="div-container">
             <div class="container_one">
                 <div class="img-container">
-                    <img [src]="profileForm.controls['profilePic'].value || imagePreview" alt="" class="cs-img">
+                    <img [src]="profileForm.controls['profilePic'].value" alt="" class="cs-img">
 
                 </div>
                 <div class="progress_container">
@@ -78,5 +78,5 @@
                 </mat-icon>
             </button>
         </div>
-    </mat-card>
+    </mat-card-content>
 </div>

@@ -31,9 +31,7 @@ export class UserProfileComponent implements OnInit {
   private unsubscribe: Subject<any>;
   currentUser: any;
   defaultProfile = '../../../../../assets/images/blank-profile-picture.png';
-  imagePreview;
   userId;
-  fileObject;
 
   @ViewChild('fileUpload', { static: false }) fileUpload: ElementRef;
   file: File = {
@@ -53,7 +51,6 @@ export class UserProfileComponent implements OnInit {
   constructor(
     private router: Router,
     private cdr: ChangeDetectorRef,
-    public commonFunction: CommonFunction,
     public fb: FormBuilder,
     private userService: UserService,
     private _snackBar: MatSnackBar

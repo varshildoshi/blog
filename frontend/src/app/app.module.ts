@@ -26,7 +26,7 @@ import { TokenInterceptorService } from './modules/services/token-interceptor.se
     HttpClientModule,
     FormsModule, ReactiveFormsModule,
     // AppRoutingModule,
-    BrowserAnimationsModule,
+    BrowserAnimationsModule
   ],
   providers: [
     {
