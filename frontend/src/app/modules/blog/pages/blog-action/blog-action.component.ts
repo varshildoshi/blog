@@ -138,7 +138,6 @@ export class BlogActionComponent implements OnInit {
   getBlogByBlogId() {
     this.blogEntry$ = this.blogService.getBlogByBlogId(this.blogId).pipe(
       map((blogEntry: BlogEntry) => {
-        console.log(blogEntry);
         return blogEntry;
       })
     );

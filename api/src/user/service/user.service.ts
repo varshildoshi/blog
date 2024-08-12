@@ -56,7 +56,9 @@ export class UserService {
     }
 
     paginate(options: IPaginationOptions): Observable<Pagination<UserInterface>> {
-        return from(paginate<UserInterface>(this.userRepository, options)).pipe(
+        return from(paginate<UserInterface>(this.userRepository, options, {
+            relations: ['blogEntries']
+        })).pipe(
             map((usersPagable: Pagination<UserInterface>) => {
                 usersPagable.items.forEach(function (v) { delete v.password });
                 return usersPagable;

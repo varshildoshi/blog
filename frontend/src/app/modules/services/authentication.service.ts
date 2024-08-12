@@ -39,10 +39,8 @@ export class AuthenticationService {
   checkUserLogin() {
     const checkUser = localStorage.getItem('user_data');
     if (checkUser) {
-      // console.log(checkUser);
       this.router.navigate(['/dashboard']);
     } else {
-      // console.log('checkUser');
       this.clearStorage();
       this.router.navigate(['/login']);
       return false;

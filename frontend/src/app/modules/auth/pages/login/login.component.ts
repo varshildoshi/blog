@@ -83,7 +83,6 @@ export class LoginComponent implements OnInit, OnDestroy {
 
     // Service Call
     this.authService.login(this.loginForm.value).pipe(tap(res => {
-      console.log(res);
       if (res) {
         // Navigate to Dashbord.
         this.router.navigate(['/dashboard']);
@@ -92,7 +91,6 @@ export class LoginComponent implements OnInit, OnDestroy {
       }
     }),
       catchError(err => {
-        console.log(err);
         if (err.error.msg_code === 114) {
           this.errorMessage = err;
         }

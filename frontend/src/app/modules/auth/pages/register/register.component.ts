@@ -82,7 +82,6 @@ export class RegisterComponent implements OnInit {
 
     // Service Call
     this.authService.register(this.registerForm.value).pipe(tap(res => {
-      console.log(res);
       if (res) {
         // Navigate to Dashbord.
         this.router.navigate(['/auth/login']);
@@ -91,7 +90,6 @@ export class RegisterComponent implements OnInit {
       }
     }),
       catchError(err => {
-        console.log(err);
         if (err.error.msg_code === 114) {
           this.errorMessage = err;
         }

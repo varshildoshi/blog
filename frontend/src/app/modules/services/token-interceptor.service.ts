@@ -40,7 +40,6 @@ export class TokenInterceptorService implements HttpInterceptor {
         break;
     }
     this.openSnackBar(`${err.error.message}! Please login. Session is expired..`);
-    console.log('Error', err);
     throw err;
   }
 

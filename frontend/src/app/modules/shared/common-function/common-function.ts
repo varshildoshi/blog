@@ -59,7 +59,6 @@ export class CommonFunction {
 
     /** Copy to  Clipboard */
     copyToClipBoard(val) {
-        console.log(val);
         if (val) {
             // tslint:disable-next-line: prefer-const
             let selBox = document.createElement('textarea');

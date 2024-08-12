@@ -148,7 +148,6 @@ export class UserProfileComponent implements OnInit {
     }
     this.loading = true;
     let payload: any = {};
-    console.log(this.profileForm.value);
     payload.email = this.profileForm.value.email;
     payload.id = this.profileForm.value.id;
     payload.name = this.profileForm.value.name;

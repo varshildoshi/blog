@@ -16,7 +16,6 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.currentUser = getUserDetails(localStorage.getItem('access_token'))['user'];
-    console.log(this.currentUser);
   }
 
   navigateToRoute(route) {
