@@ -3,7 +3,7 @@
 // The list of file replacements can be found in `angular.json`.
 
 // const devBaseURL = 'http://localhost:3000/';
-const devBaseURL = 'https://blog-production-b112.up.railway.app/';
+const devBaseURL = 'https://blog-web.up.railway.app/';
 
 export const environment = {
   production: false,
