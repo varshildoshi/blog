@@ -54,9 +54,9 @@ export class BlogActionComponent implements OnInit {
     height: '15rem',
     minHeight: '5rem',
     maxHeight: 'auto',
-    width: 'auto',
-    minWidth: '0',
-    translate: 'yes',
+    // width: 'auto',
+    // minWidth: '0',
+    translate: 'no',
     enableToolbar: true,
     showToolbar: true,
     placeholder: 'Enter text here...',
@@ -89,11 +89,11 @@ export class BlogActionComponent implements OnInit {
         'indent',
         'outdent',
         'customClasses',
-        'insertImage',
-        'insertVideo',
+        //'insertImage',
+        //'insertVideo',
         'toggleEditorMode'
       ]
-    ]
+    ],
   };
 
 

@@ -55,6 +55,7 @@ export class AuthenticationService {
   */
   public isAuthorized(): Observable<boolean> {
     const accessToken = this.tokenStorage.getAccessToken();
+    console.log('accessToken::::::', accessToken);
     const auth: any = {
       isLoggedIn: !accessToken ? false : true
     };
@@ -67,10 +68,10 @@ export class AuthenticationService {
    * @returns Observable<boolean>
    * @memberOf AuthService
    */
-  public isAuthorizedAdmin(): Observable<boolean> {
-    const userId = this.tokenStorage.getHeaderAdminAccessToken();
-    return of(!userId ? false : true);
-  }
+  // public isAuthorizedAdmin(): Observable<boolean> {
+  //   const userId = this.tokenStorage.getHeaderAdminAccessToken();
+  //   return of(!userId ? false : true);
+  // }
 
   /**
    * Submit register request
@@ -99,11 +100,11 @@ export class AuthenticationService {
    * @param Credential: credential
    * @returns Observable<any>
    */
-  public adminLogin(credential: any): Observable<any> {
-    return this.http.post(environment.baseURL + 'auth/login', credential).pipe(
-      tap(n => this.saveAccessDataAdmin(n))
-    );
-  }
+  // public adminLogin(credential: any): Observable<any> {
+  //   return this.http.post(environment.baseURL + 'auth/login', credential).pipe(
+  //     tap(n => this.saveAccessDataAdmin(n))
+  //   );
+  // }
 
   /**
    * Update User Information
@@ -131,9 +132,9 @@ export class AuthenticationService {
     if (typeof accessData !== 'undefined') {
       this.tokenStorage
         // .setUserInfo(accessData.data.admin)
-        .setAdminAccessToken(accessData.data.token)
-        .setRefreshToken('')
-        .setIsAdmin('true')
+        // .setAdminAccessToken(accessData.data.token)
+        // .setRefreshToken('')
+        // .setIsAdmin('true')
     }
     return this;
   }
@@ -147,8 +148,8 @@ export class AuthenticationService {
       this.tokenStorage
         // .setUserInfo(accessData.data.user)
         .setAccessToken(accessData.access_token)
-        .setRefreshToken('')
-        .setIsAdmin('false')
+        // .setRefreshToken('')
+        // .setIsAdmin('false')
     }
     return this;
   }

@@ -24,8 +24,8 @@ export class LoginAuthGuard implements CanActivate {
                       state: RouterStateSnapshot): Observable<boolean> | boolean {
         return this.authenticationService.isAuthorized().pipe(map((isAuthorized: any) => {
             if (isAuthorized.isLoggedIn) {
-                this.router.navigate(['/dashboard']);
-                return false;
+                // this.router.navigate(['/dashboard']);
+                // return false;
             }
             return true;
         }));

@@ -16,6 +16,22 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { TokenStorage } from './modules/services/token-storage.service';
 import { TokenInterceptorService } from './modules/services/token-interceptor.service';
 
+import { NgxIndexedDBModule, DBConfig } from 'ngx-indexed-db';
+
+const dbConfig: DBConfig = {
+  name: 'blogAuthdb',
+  version: 1,
+  objectStoresMeta: [
+    {
+      store: 'access_token',
+      storeConfig: { keyPath: 'id', autoIncrement: true },
+      storeSchema: [
+        { name: 'token', keypath: 'token', options: { unique: false } },
+      ]
+    }
+  ]
+};
+
 @NgModule({
   declarations: [
     AppComponent
@@ -26,7 +42,8 @@ import { TokenInterceptorService } from './modules/services/token-interceptor.se
     HttpClientModule,
     FormsModule, ReactiveFormsModule,
     // AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    NgxIndexedDBModule.forRoot(dbConfig),
   ],
   providers: [
     {

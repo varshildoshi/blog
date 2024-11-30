@@ -6,7 +6,11 @@ import { LoginAuthGuard } from './shared/guards/login-auth-guard';
 import { AdminLoginAuthGuard } from './shared/guards/admin-login-auth-guard';
 
 const routes: Routes = [
-  { path: 'auth', canActivate: [LoginAuthGuard], loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule) },
+  {
+    path: '',
+    // canActivate: [LoginAuthGuard],
+    loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
+  },
   { path: 'login', pathMatch: 'full', redirectTo: 'auth/login' },
   { path: 'admin', canActivate: [AdminLoginAuthGuard], loadChildren: () => import('./admin/admin-auth.module').then(m => m.AdminAuthModule) },
   { path: '', pathMatch: 'full', redirectTo: 'dashboard' },
