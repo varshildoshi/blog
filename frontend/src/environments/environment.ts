@@ -2,8 +2,7 @@
 // `ng build` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
-// const devBaseURL = 'http://localhost:3000/';
-const devBaseURL = 'https://blog-web.up.railway.app/';
+const devBaseURL = 'http://localhost:3000/';
 
 export const environment = {
   production: false,

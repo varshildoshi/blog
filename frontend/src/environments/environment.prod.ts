@@ -1,5 +1,4 @@
-// const devBaseURL = 'http://localhost:3000/';
-const devBaseURL = 'https://blog-web.up.railway.app/';
+const devBaseURL = 'http://localhost:3000/';
 
 export const environment = {
   production: false,
