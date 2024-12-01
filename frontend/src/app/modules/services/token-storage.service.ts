@@ -73,8 +73,8 @@ export class TokenStorage {
   // }
 
   public setAccessToken(token: string): TokenStorage {
-    this.dbService.add('access_token', { token });
-    // localStorage.setItem('access_token', token);
+    // this.dbService.add('access_token', { token });
+    localStorage.setItem('access_token', token);
     return this;
   }
 

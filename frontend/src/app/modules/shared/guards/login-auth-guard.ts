@@ -11,21 +11,25 @@ export class LoginAuthGuard implements CanActivate {
 
     constructor(
         private router: Router,
-        private authenticationService: AuthenticationService
+        private authenticationService: AuthenticationService,
     ) {
     }
 
     canActivate(route: ActivatedRouteSnapshot,
-                state: RouterStateSnapshot): Observable<boolean> | boolean {
+        state: RouterStateSnapshot): Observable<boolean> | boolean {
         return this.checkIfAuthorized(route, state);
     }
 
+    canActivateChild(childRoute: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | Observable<boolean> | Promise<boolean> {
+        return this.checkIfAuthorized(childRoute, state);
+    }
+
     checkIfAuthorized(route: ActivatedRouteSnapshot,
-                      state: RouterStateSnapshot): Observable<boolean> | boolean {
+        state: RouterStateSnapshot): Observable<boolean> | boolean {
         return this.authenticationService.isAuthorized().pipe(map((isAuthorized: any) => {
             if (isAuthorized.isLoggedIn) {
-                // this.router.navigate(['/dashboard']);
-                // return false;
+                this.router.navigate(['/dashboard']);
+                return false;
             }
             return true;
         }));

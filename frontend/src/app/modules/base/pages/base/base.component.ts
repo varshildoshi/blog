@@ -72,7 +72,7 @@ export class BaseComponent implements OnInit {
   }
 
   logout() {
+    this.router.navigate(['/auth']);
     localStorage.clear();
-    this.router.navigate(['/auth/login']);
   }
 }

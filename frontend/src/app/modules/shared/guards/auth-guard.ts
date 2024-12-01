@@ -17,7 +17,6 @@ export class AuthGuard implements CanActivate {
     constructor(
         private router: Router,
         private authenticationService: AuthenticationService,
-        // private globalStoreService: GlobalStoreService
     ) { }
 
     canActivate(route: ActivatedRouteSnapshot,
@@ -32,11 +31,12 @@ export class AuthGuard implements CanActivate {
     checkIfAuthorized(route: ActivatedRouteSnapshot,
         state: RouterStateSnapshot): Observable<boolean> | boolean {
         return this.authenticationService.isAuthorized().pipe(map((isAuthorized: any) => {
+            console.log('fddfgdfgdf', isAuthorized);
             if (isAuthorized.isLoggedIn) {
-                return false;
+                return true;
             }
-            // this.router.navigate(['/auth/login']);
-            // return false;
+            this.router.navigate(['/auth']);
+            return false;
         }));
     }
 

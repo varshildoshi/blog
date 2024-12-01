@@ -8,6 +8,10 @@ async function bootstrap() {
   app.use(bodyParser.json({ limit: '50mb' }));
   app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
   app.enableCors();
+  // app.enableCors({
+  //   origin: 'https://blog-web.up.railway.app',
+  //   credentials: true,
+  // });
   await app.listen(port, "0.0.0.0");
   // await app.listen(3000);
 }
